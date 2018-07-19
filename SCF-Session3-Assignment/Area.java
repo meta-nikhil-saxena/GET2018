@@ -3,21 +3,47 @@ import java.util.Scanner;
 //Computes Area of Triangle,Rectangle,Circle,Square
 public class Area {
 
+	/**
+	 * Area of Triangle
+	 * 
+	 * @param height
+	 * @param base
+	 * @return area
+	 */
 	double AreaTriangle(double height, double base) {
 		double area = (double) (0.5) * (base * height);
 		return area;
 	}
 
+	/**
+	 * Area of Rectangle
+	 * 
+	 * @param width
+	 * @param height
+	 * @return area
+	 */
 	double AreaRectangle(double width, double height) {
 		double area = (width * height);
 		return area;
 	}
 
+	/**
+	 * Area of Circle
+	 * 
+	 * @param radius
+	 * @return area
+	 */
 	double AreaCircle(double radius) {
 		double area = (double) ((3.14) * radius * radius);
 		return area;
 	}
 
+	/**
+	 * Area of square
+	 * 
+	 * @param sides
+	 * @return area
+	 */
 	double AreaSquare(double sides) {
 		double area = (double) (sides * sides);
 		return area;
@@ -99,14 +125,14 @@ public class Area {
 					break;
 				}
 				case 5: {
-					System.exit(0);				
+					System.exit(0);
 				}
 				default: {
 					System.out.println("Invalid choice");
 					break;
 				}
 				}
-			}catch(ArithmeticException e){
+			} catch (ArithmeticException e) {
 				System.out.println("!! Input cannot be negative or Zero !!");
 				continue;
 			} catch (Exception e1) {
