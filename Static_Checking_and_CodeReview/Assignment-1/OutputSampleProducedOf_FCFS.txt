@@ -1,0 +1,72 @@
+Output : 1
+
+Enter number of process : 
+2
+Enter the Process Arrival Time and Burst time
+Process ID 1
+Arrival Time : 
+0
+Burst Time : 
+9
+Process ID 2
+Arrival Time : 
+1
+Burst Time : 
+4
+----Process Description----
+Pid : 1   AT : 0   BT : 9    
+Pid : 2   AT : 1   BT : 4    
+----------------------------
+------------Final Output-----------
+Pid : 1    AT : 0   BT : 9     WT : 0    TAT : 9    CT : 9    
+Pid : 2    AT : 1   BT : 4     WT : 8    TAT : 12    CT : 13    
+------------Average waiting time-----------
+Average waiting time : 4
+------------Max waiting time period-----------
+Max Wait Time Period : 8
+
+
+
+
+
+Output : 2...taking sorting case
+
+
+Enter number of process : 
+4
+Enter the Process Arrival Time and Burst time
+Process ID 1
+Arrival Time : 
+0
+Burst Time : 
+10
+Process ID 2
+Arrival Time : 
+4
+Burst Time : 
+5
+Process ID 3
+Arrival Time : 
+3
+Burst Time : 
+10
+Process ID 4
+Arrival Time : 
+2
+Burst Time : 
+10
+----Process Description----
+Pid : 1   AT : 0   BT : 10    
+Pid : 2   AT : 4   BT : 5    
+Pid : 3   AT : 3   BT : 10    
+Pid : 4   AT : 2   BT : 10    
+----------------------------
+------------Final Output-----------
+Pid : 1    AT : 0   BT : 10     WT : 0    TAT : 10    CT : 10    
+Pid : 4    AT : 2   BT : 10     WT : 8    TAT : 18    CT : 20    
+Pid : 3    AT : 3   BT : 10     WT : 17    TAT : 27    CT : 30    
+Pid : 2    AT : 4   BT : 5     WT : 26    TAT : 31    CT : 35    
+------------Average waiting time-----------
+Average waiting time : 12
+------------Max waiting time period-----------
+Max Wait Time Period : 26
