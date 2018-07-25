@@ -1,7 +1,13 @@
 package AssignmentClasses;
 
-final class Poly {
-    private int cofficient[];
+/**
+ * Mutable class for Operation on Polynomials
+ * 
+ * evaluate add multiply degree
+ */
+public final class Poly {
+    
+    final private int cofficient[];
 
     /**
      * Constructor for initialization of cofficient and power of polinomial in
@@ -15,18 +21,18 @@ final class Poly {
     }
 
     /**
-     * Function powerCalc(int,float) to compute power of element
+     * Helper function powerCalc(int,float) to compute power of element
      * 
      * @param power
      * @param value
      * @return powerCalc after calculating power
      */
-    float powerCalc(int power, float value) {
+    public float powerCalc(int power, float value) {
         float powerCalc = 1;
         if (power == 0) {
             return 1;
         }
-        for (int i = 0; i < power; i++) {
+        for (int index = 0; index < power; index++) {
             powerCalc *= value;
         }
         return powerCalc;
@@ -38,12 +44,13 @@ final class Poly {
      * @param value
      * @return result computed from polynomial
      */
-    float evaluate(float value) {
+    public float evaluate(float value) {
         float result = 0;
 
-        for (int i = this.cofficient.length - 1, k = 0; i >= 0; i--, k++) {
-            int cofficient = this.cofficient[k];
-            result += cofficient * this.powerCalc(i, value);
+        // Here index1 is for Power and index2 is for cofficient
+        for (int index1 = this.cofficient.length - 1, index2 = 0; index1 >= 0; index1--, index2++) {
+            int cofficient = this.cofficient[index2];
+            result += cofficient * this.powerCalc(index1, value);
         }
 
         return result;
@@ -54,7 +61,7 @@ final class Poly {
      * 
      * @return degree of polynomial
      */
-    int degree() {
+    public int degree() {
         return this.cofficient.length - 1;
     }
 
@@ -64,15 +71,25 @@ final class Poly {
      * @param polynomial
      * @return addition of polynomial
      */
-    int[] addTwoPoly(Poly polynomial) {
+    public int[] addTwoPoly(Poly polynomial) {
+
+        // If polynomial1 length is smaller than polynomial2 interchange the
+        // places of polynomials
+        if (polynomial.cofficient.length > this.cofficient.length) {
+            int result[] = polynomial.addTwoPoly(this);
+            return result;
+        }
 
         int resultPoly[] = new int[this.cofficient.length];
 
-        for (int i = resultPoly.length - 1, k = polynomial.cofficient.length - 1; i >= 0; i--, k--) {
-            if (k >= 0) {
-                resultPoly[i] = this.cofficient[i] + polynomial.cofficient[k];
+        // Here index1 is for first Polynomial and index2 is for second
+        // polynomial
+        for (int index1 = this.cofficient.length - 1, index2 = polynomial.cofficient.length - 1; index1 >= 0; index1--, index2--) {
+            if (index2 >= 0) {
+                resultPoly[index1] = this.cofficient[index1]
+                        + polynomial.cofficient[index2];
             } else {
-                resultPoly[i] = this.cofficient[i];
+                resultPoly[index1] = this.cofficient[index1];
             }
         }
         return resultPoly;
@@ -84,14 +101,15 @@ final class Poly {
      * @param polynomial
      * @return multiply of polynomial
      */
-    int[] multiplyTwoPoly(Poly polynomial) {
+    public int[] multiplyTwoPoly(Poly polynomial) {
         int multiplyPoly[] = new int[(this.cofficient.length + polynomial.cofficient.length) - 1];
 
-        for (int i = this.cofficient.length - 1; i >= 0; i--) {
-            for (int j = polynomial.cofficient.length - 1; j >= 0; j--) {
+        for (int index1 = this.cofficient.length - 1; index1 >= 0; index1--) {
+            for (int index2 = polynomial.cofficient.length - 1; index2 >= 0; index2--) {
 
-                multiplyPoly[i + j] = multiplyPoly[i + j] + this.cofficient[i]
-                        * polynomial.cofficient[j];
+                multiplyPoly[index1 + index2] = multiplyPoly[index1 + index2]
+                        + this.cofficient[index1]
+                        * polynomial.cofficient[index2];
 
             }
         }
@@ -111,7 +129,7 @@ final class Poly {
         System.out.println("Degree : " + polynomial2.degree());
 
         System.out.println("Sum of Polynomial1 and Polynomial2 : ");
-        int polySum[] = polynomial2.addTwoPoly(polynomial1);
+        int polySum[] = polynomial1.addTwoPoly(polynomial2);
         for (int i = 0; i < polySum.length; i++) {
             System.out.print("   " + polySum[i] + "   ");
         }
