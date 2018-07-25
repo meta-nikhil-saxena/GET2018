@@ -1,5 +1,6 @@
 package AssignmentClasses;
 
+//Class to Test InSet class
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -90,26 +91,30 @@ public class InSetTest {
     @Test
     public void testCompliment1() {
         int actual[] = set1.getComplement();
-        Assert.assertArrayEquals(new int[] { 6, 7, 8, 9, 10 }, actual);
+        Assert.assertArrayEquals(new int[] { 100, 200, 456, 234, 890, 990, 100,
+                210, 500, 700, 900 }, actual);
     }
 
     @Test
     public void testCompliment2() {
         int actual[] = set2.getComplement();
-        Assert.assertArrayEquals(new int[] { 8, 10 }, actual);
+        Assert.assertArrayEquals(new int[] { 100, 200, 456, 234, 890, 990, 100,
+                210, 500, 700, 900 }, actual);
     }
 
     // Negative test cases
     @Test
     public void testNegativeCompliment1() {
         int actual[] = set1.getComplement();
-        Assert.assertNotEquals(new int[] { 1, 2, 3, 4 }, actual);
+        Assert.assertNotEquals(new int[] { 200, 456, 234, 890, 990, 100, 210,
+                500, 700, 900 }, actual);
     }
 
     @Test
     public void testNegativeCompliment2() {
         int actual[] = set2.getComplement();
-        Assert.assertNotEquals(new int[] { 1, 6, 7, 8 }, actual);
+        Assert.assertNotEquals(new int[] { 234, 890, 990, 100, 210, 500, 700,
+                900 }, actual);
     }
 
     /**
