@@ -1,10 +1,20 @@
 package AssignmentClasses;
 
+/**
+ * 
+ * Mutable class for Doing operations on set
+ * size() , isMember(int) , isSubset(set) , getCompliment() , union(set2)
+ *
+ */
 public final class InSet {
-    private int arraySet[];
-    private int arrayUniversalSet[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    private int complimentSet[];
-    private int count[] = new int[1000];
+    private final int arraySet[];
+
+    // Let Universal set U is :
+    private final int arrayUniversalSet[] = { 1, 2, 3, 4, 100, 200, 456, 234,
+            890, 990, 100, 210, 500, 700, 900 };
+
+    // Stores the count of values in array
+    private final int count[] = new int[1000];
 
     /**
      * Constructor for Initialization of Array
@@ -15,15 +25,33 @@ public final class InSet {
      *             elements are there
      */
     InSet(int arraySet[]) throws AssertionError {
-        for (int i = 0; i < arraySet.length; i++) {
-            count[arraySet[i]]++;
-            if (arraySet[i] < 0 || arraySet[i] > 1000 || count[arraySet[i]] > 1) {
+        this.arraySet = arraySet;
+
+        this.checkException(arraySet);
+        this.checkException(arrayUniversalSet);
+
+        // Counting current set
+        for (int index = 0; index < arraySet.length; index++) {
+            count[arraySet[index]]++;
+        }
+
+    }
+
+    /**
+     * Helper Function to check Exception in Function
+     * 
+     * @param arraySet
+     */
+    void checkException(int arraySet[]) {
+        for (int index = 0; index < arraySet.length; index++) {
+            // Checking if range of set exceed the given range 1...1000
+            // and if there are duplicate entries
+            if (arraySet[index] < 0 || arraySet[index] > 1000
+                    || count[arraySet[index]] > 1) {
                 throw new AssertionError(
                         "!! Values Out of Range Or Duplicate entries in set !!");
-
             }
         }
-        this.arraySet = arraySet;
     }
 
     /**
@@ -42,8 +70,8 @@ public final class InSet {
      * @return true if element is member in set or false if not a member in set
      */
     boolean isMember(int element) {
-        for (int i = 0; i < size(); i++) {
-            if (element == arraySet[i]) {
+        for (int index = 0; index < this.size(); index++) {
+            if (element == arraySet[index]) {
                 return true;
             }
         }
@@ -57,13 +85,17 @@ public final class InSet {
      * @return true if a set say set2 is subset of the other set say set1
      */
     boolean isSubset(InSet set) {
-        int set2Array[] = set.arraySet;
+
+        int set2Array[] = new int[set.arraySet.length];
+        for (int index = 0; index < set.size(); index++) {
+            set2Array[index] = set.arraySet[index];
+        }
         int count = 0;
 
-        for (int i = 0; i < set.size(); i++) {
-            int n = set2Array[i];
-            for (int j = 0; j < size(); j++) {
-                if (n == arraySet[j]) {
+        for (int index = 0; index < set.size(); index++) {
+            int element = set2Array[index];
+            for (int index2 = 0; index2 < this.size(); index2++) {
+                if (element == arraySet[index2]) {
                     count++;
                 }
 
@@ -81,23 +113,31 @@ public final class InSet {
      * @return compliment set arraySet
      */
     int[] getComplement() {
+        int complimentSet[];
         int num, count = 0, newIndex = 0;
+
         int complimentTemporary[] = new int[arrayUniversalSet.length];
-        for (int i = 0; i < arrayUniversalSet.length; i++) {
-            num = arrayUniversalSet[i];
+        for (int index = 0; index < arrayUniversalSet.length; index++) {
+            num = arrayUniversalSet[index];
             count = 0;
-            for (int j = 0; j < size(); j++) {
-                if (num != arraySet[j]) {
+
+            // For iterating the current Set (this)
+            for (int index2 = 0; index2 < this.size(); index2++) {
+                if (num != this.arraySet[index2]) {
                     count++;
-                    if (count == size()) {
+                    /*
+                     * To store compliment in the array if element not found in
+                     * current array
+                     */
+                    if (count == this.size()) {
                         complimentTemporary[newIndex++] = num;
                     }
                 }
             }
         }
         complimentSet = new int[newIndex];
-        for (int i = 0; i < newIndex; i++) {
-            complimentSet[i] = complimentTemporary[i];
+        for (int index = 0; index < newIndex; index++) {
+            complimentSet[index] = complimentTemporary[index];
         }
         return complimentSet;
     }
@@ -109,48 +149,66 @@ public final class InSet {
      * @return union of sets say set1 and set2
      */
     int[] unionOfSets(InSet set2) {
+
         int unionTemporary[] = new int[this.size() + set2.size()];
         int unionOfSets[];
         int newIndex = 0;
-        for (int i = 0; i < size(); i++) {
-            if (count[arraySet[i]] == 1) {
-                unionTemporary[newIndex++] = arraySet[i];
-                count[arraySet[i]]++;
+
+        // Adding current set(this) in the new array if count is 1 , avoiding
+        // duplicate entries
+        for (int index = 0; index < this.size(); index++) {
+            if (count[arraySet[index]] == 1) {
+                unionTemporary[newIndex++] = arraySet[index];
+                count[arraySet[index]]++;
             }
         }
-        for (int i = 0; i < set2.size(); i++) {
-            if (count[set2.arraySet[i]] == 1) {
-                unionTemporary[newIndex++] = set2.arraySet[i];
-                count[set2.arraySet[i]]++;
+
+        // Adding current second set(set2) in the new array if count is 1 ,
+        // avoiding duplicate entries
+        for (int index = 0; index < set2.size(); index++) {
+            if (count[set2.arraySet[index]] == 1) {
+                unionTemporary[newIndex++] = set2.arraySet[index];
+                count[set2.arraySet[index]]++;
             }
         }
+
         unionOfSets = new int[newIndex];
-        for (int i = 0; i < newIndex; i++) {
-            unionOfSets[i] = unionTemporary[i];
+
+        for (int index = 0; index < newIndex; index++) {
+            unionOfSets[index] = unionTemporary[index];
         }
         sort(unionOfSets);
         return unionOfSets;
     }
 
+    /**
+     * Helper function of bubble sort
+     * 
+     * @param array
+     */
     void sort(int array[]) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < (array.length - 1) - i; j++) {
-                if (array[j] > array[j + 1]) {
-                    int temporary = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temporary;
+
+        for (int index1 = 0; index1 < array.length; index1++) {
+
+            for (int index2 = 0; index2 < (array.length - 1) - index1; index2++) {
+
+                if (array[index2] > array[index2 + 1]) {
+                    int temporary = array[index2];
+                    array[index2] = array[index2 + 1];
+                    array[index2 + 1] = temporary;
                 }
             }
         }
     }
 
+    // Some manually testing inputs
     public static void main(String args[]) {
         try {
             int arraySet1[] = { 1, 2, 3, 4, 5 };
             int arraySet2[] = { 1, 2, 3, 6, 7, 9, 4, 5 };
 
-            InSet set1 = new InSet(arraySet1);
-            InSet set2 = new InSet(arraySet2);
+            final InSet set1 = new InSet(arraySet1);
+            final InSet set2 = new InSet(arraySet2);
 
             System.out.println("Set 1 size : " + set1.size());
             System.out.println("Set 2 size : " + set2.size());
