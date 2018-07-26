@@ -1,6 +1,8 @@
 
 //Class for sparse matrix Operations
 
+package SCF_Session7_Assignment;
+
 public final class SparseMatrix {
 
     final private int row;
@@ -30,8 +32,8 @@ public final class SparseMatrix {
      * @param sparse2
      * @return true or false
      */
-    private boolean checkForSquareMatrix(int array[][]) {
-        if (this.row != array.length && this.column != array[0].length) {
+    private boolean checkForSquareMatrix(SparseMatrix sparse) {
+        if (this.row != sparse.row || this.column != sparse.column) {
             return false;
         }
         return true;
@@ -45,7 +47,7 @@ public final class SparseMatrix {
      * @param sparse2
      * @return true or false
      */
-    private boolean checkForMultiply(int row, int column, SparseMatrix sparse2) {
+    private boolean checkForMultiply(SparseMatrix sparse2) {
         if (this.row != sparse2.column) {
             return false;
         }
@@ -136,10 +138,6 @@ public final class SparseMatrix {
                 newArray[0].length, newArray);
         int transpose[][] = sparse.transposeMatrix();
 
-        if (!this.checkForSquareMatrix(transpose)) {
-            throw new AssertionError();
-        }
-
         // Here 0 and 1 denotes the fix row number and column number of sparse
         // matrix non-zero element
         for (int index = 0; index < transpose.length; index++) {
@@ -157,9 +155,9 @@ public final class SparseMatrix {
      * @param sparse2
      * @return Add result in 2D array
      */
-    public int[][] addTwoMatrix(SparseMatrix sparse2) {
-        if (!this.checkForSquareMatrix(sparse2.IndexOfNonZero)) {
-            throw new AssertionError();
+    public int[][] addTwoMatrix(SparseMatrix sparse2) throws AssertionError {
+        if (!this.checkForSquareMatrix(sparse2)) {
+            throw new AssertionError("Not a square matrtix for addition");
         }
         int AddOfMatrix[][] = new int[this.IndexOfNonZero.length
                 + sparse2.IndexOfNonZero.length][this.IndexOfNonZero[0].length];
@@ -237,17 +235,14 @@ public final class SparseMatrix {
      * @param sparse2
      * @return multiplication of matrix
      */
-    public int[][] multiply(SparseMatrix sparse2) {
-        
-        int k = 0;   //Temporary index for storing multiplication of matrix
+    public int[][] multiply(SparseMatrix sparse2) throws AssertionError {
+        if (!this.checkForMultiply(sparse2)) {
+            throw new AssertionError("Invalid Size");
+        }
+        int k = 0; // Temporary index for storing multiplication of matrix
         int matrix[][] = sparse2.getDeepCopy(IndexOfNonZero);
         int multiply[][] = new int[this.IndexOfNonZero.length
                 + sparse2.IndexOfNonZero.length][this.IndexOfNonZero[0].length];
-        if (this.IndexOfNonZero.length != sparse2.IndexOfNonZero[0].length) {
-
-            throw new AssertionError();
-
-        }
 
         matrix = sparse2.transposeMatrix();
         sort(matrix);
@@ -332,8 +327,12 @@ public final class SparseMatrix {
         int sparse2[][] = new int[][] { { 0, 2, 1 }, { 1, 0, 1 }, { 1, 2, 2 },
                 { 2, 1, 2 } };
 
-        SparseMatrix sparseMat1 = new SparseMatrix(2, 3, sparse1);
-        SparseMatrix sparseMat2 = new SparseMatrix(3, 2, sparse2);
+        SparseMatrix sparseMat1 = new SparseMatrix(3, 3, sparse1);
+        SparseMatrix sparseMat2 = new SparseMatrix(3, 3, sparse2);
+
+        System.out.println("Check for symmetry : ");
+        System.out.println(sparseMat1.isSymmetrical());
+        System.out.println(sparseMat2.isSymmetrical());
 
         System.out.println("Before  transpose of sparse 1 : ");
         for (int row = 0; row < sparse1.length; row++) {
