@@ -1,4 +1,5 @@
-import java.util.Arrays;
+
+//Class for sparse matrix Operations
 
 public final class SparseMatrix {
 
@@ -230,6 +231,100 @@ public final class SparseMatrix {
         return ArrayAfterAddition;
     }
 
+    /**
+     * Function to multiply two sparse matrix
+     * 
+     * @param sparse2
+     * @return multiplication of matrix
+     */
+    public int[][] multiply(SparseMatrix sparse2) {
+        
+        int k = 0;   //Temporary index for storing multiplication of matrix
+        int matrix[][] = sparse2.getDeepCopy(IndexOfNonZero);
+        int multiply[][] = new int[this.IndexOfNonZero.length
+                + sparse2.IndexOfNonZero.length][this.IndexOfNonZero[0].length];
+        if (this.IndexOfNonZero.length != sparse2.IndexOfNonZero[0].length) {
+
+            throw new AssertionError();
+
+        }
+
+        matrix = sparse2.transposeMatrix();
+        sort(matrix);
+        int index1, index2;
+
+        for (index1 = 0; index1 < IndexOfNonZero.length;) {
+
+            int row = IndexOfNonZero[index1][0];
+
+            for (index2 = 0; index2 < matrix.length;) {
+
+                int column = matrix[index2][0];
+
+                // temporary pointers created to add all
+                // multiplied values to obtain current
+                // element of result matrix
+                int tempa = index1;
+                int tempb = index2;
+
+                int sum = 0;
+
+                // iterate over all elements with
+                // same row and col value
+                // to calculate result[r]
+                while (tempa < IndexOfNonZero.length
+                        && IndexOfNonZero[tempa][0] == row
+                        && tempb < matrix.length && matrix[tempb][0] == column) {
+
+                    if (IndexOfNonZero[tempa][1] < matrix[tempb][1])
+
+                        // skip a
+                        tempa++;
+
+                    else if (IndexOfNonZero[tempa][1] > matrix[tempb][1])
+
+                        // skip b
+                        tempb++;
+
+                    else
+
+                        // same col, so multiply and increment
+                        sum += IndexOfNonZero[tempa++][2] * matrix[tempb++][2];
+                }
+
+                if (sum != 0) {
+                    // result.insert(r, c, sum);
+
+                    multiply[k][0] = row;
+                    multiply[k][1] = column;
+                    multiply[k][2] = sum;
+
+                    k++;
+                }
+
+                while (index2 < matrix.length && matrix[index2][0] == column)
+
+                    // jump to next column
+                    index2++;
+            }
+            while (index1 < IndexOfNonZero.length
+                    && IndexOfNonZero[index1][0] == row)
+
+                // jump to next row
+                index1++;
+        }
+        int multiplyTwoSparse[][] = new int[k][this.IndexOfNonZero[0].length];
+
+        for (int index = 0; index < k; index++) {
+
+            multiplyTwoSparse[index][0] = multiply[index][0];
+            multiplyTwoSparse[index][1] = multiply[index][1];
+            multiplyTwoSparse[index][2] = multiply[index][2];
+
+        }
+        return multiplyTwoSparse;
+    }
+
     public static void main(String args[]) {
 
         // Stored non-zero index in a 2D array
@@ -237,8 +332,8 @@ public final class SparseMatrix {
         int sparse2[][] = new int[][] { { 0, 2, 1 }, { 1, 0, 1 }, { 1, 2, 2 },
                 { 2, 1, 2 } };
 
-        SparseMatrix sparseMat1 = new SparseMatrix(3, 3, sparse1);
-        SparseMatrix sparseMat2 = new SparseMatrix(3, 3, sparse2);
+        SparseMatrix sparseMat1 = new SparseMatrix(2, 3, sparse1);
+        SparseMatrix sparseMat2 = new SparseMatrix(3, 2, sparse2);
 
         System.out.println("Before  transpose of sparse 1 : ");
         for (int row = 0; row < sparse1.length; row++) {
@@ -283,6 +378,15 @@ public final class SparseMatrix {
         for (int row = 0; row < addOfTwoMatrix.length; row++) {
             for (int column = 0; column < addOfTwoMatrix[0].length; column++) {
                 System.out.print(addOfTwoMatrix[row][column]);
+            }
+            System.out.println();
+        }
+
+        System.out.println("Multiplication of sparse1 and sparse2");
+        int multiply[][] = sparseMat1.multiply(sparseMat2);
+        for (int row1 = 0; row1 < multiply.length; row1++) {
+            for (int column1 = 0; column1 < multiply[0].length; column1++) {
+                System.out.print(multiply[row1][column1]);
             }
             System.out.println();
         }
