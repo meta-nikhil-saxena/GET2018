@@ -16,7 +16,7 @@ public final class SparseMatrix {
      * @param column
      * @param IndexOfNonZero
      */
-    private SparseMatrix(int row, int column, int IndexOfNonZero[][]) {
+    SparseMatrix(int row, int column, int IndexOfNonZero[][]) {
         this.row = row;
         this.column = column;
         this.IndexOfNonZero = IndexOfNonZero;
