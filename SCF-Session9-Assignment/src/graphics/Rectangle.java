@@ -63,7 +63,7 @@ public class Rectangle implements Shape {
 
     public float getPerimeter() {
 
-        return (2 * this.length * this.width);
+        return (2 * (this.length + this.width));
     }
 
     public String getOrigin() {
@@ -71,7 +71,10 @@ public class Rectangle implements Shape {
         return "(" + this.xCoordinate + "," + this.yCoordinate + ")";
     }
 
-    public boolean isPointEnclosed(int xCoordinate, int yCoordinate) {
+    public boolean isPointEnclosed(Point point) {
+        int xCoordinate = point.getxCoordinate();
+        int yCoordinate = point.getyCoordinate();
+
         int x1 = this.xCoordinate;
         int y1 = this.yCoordinate;
 
