@@ -61,14 +61,14 @@ public class Triangle implements Shape {
     // Setters and getters END
 
     public float getArea() {
-        int sides = (this.side1 + this.side2 + this.side3) / 2;
-        int solution = (sides * (sides - side1) * (sides - side2) * (sides - side3));
+        float sides = (float) ((this.side1 + this.side2 + this.side3) / 2);
+        float solution = (sides * ((sides - side1) + (sides - side2) + (sides - side3)));
         float finalsol = (float) Math.sqrt(solution);
         return finalsol;
     }
 
     public float getPerimeter() {
-        float sides = (this.side1 + this.side2 + this.side3) / 2;
+        float sides = (float) ((this.side1 + this.side2 + this.side3) / 2);
         return sides;
     }
 
@@ -77,7 +77,11 @@ public class Triangle implements Shape {
         return "(" + this.xCoordinate + "," + this.yCoordinate + ")";
     }
 
-    public boolean isPointEnclosed(int xCoordinate, int yCoordinate) {
+    public boolean isPointEnclosed(Point point) {
+
+        int xCoordinate = point.getxCoordinate();
+        int yCoordinate = point.getyCoordinate();
+
         int x1 = this.xCoordinate;
         int y1 = this.yCoordinate;
 
