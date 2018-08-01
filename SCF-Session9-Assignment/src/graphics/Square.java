@@ -67,7 +67,10 @@ public class Square implements Shape {
         return "(" + this.xCoordinate + "," + this.yCoordinate + ")";
     }
 
-    public boolean isPointEnclosed(int xCoordinate, int yCoordinate) {
+    public boolean isPointEnclosed(Point point) {
+
+        int xCoordinate = point.getxCoordinate();
+        int yCoordinate = point.getyCoordinate();
 
         int x1 = this.xCoordinate;
         int y1 = this.yCoordinate;
