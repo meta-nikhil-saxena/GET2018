@@ -11,18 +11,19 @@ import interfaceModule.Shape;
 
 public class Screen {
 
-    List<Shape> screenList = new ArrayList<Shape>();
+    public List<Shape> screenList = new ArrayList<Shape>();
+    Scanner sc = new Scanner(System.in);
 
     // Max x-coordinate and y-coordinate on the screen
-    private int maxXcoordinate;
-    private int maxYcoordinate;
+    private static int maxXcoordinate;
+    private static int maxYcoordinate;
 
     // Min x-coordinate and y-coordinate on the screen
-    private int minXcoordinate;
-    private int minYcoordinate;
+    private static int minXcoordinate;
+    private static int minYcoordinate;
 
     // Getters and setters START
-    public int getMAX_XCOORDINATE() {
+    public static int getMAX_XCOORDINATE() {
         return maxXcoordinate;
     }
 
@@ -30,7 +31,7 @@ public class Screen {
         maxXcoordinate = mAX_XCOORDINATE;
     }
 
-    public int getMAX_YCOORDINATE() {
+    public static int getMAX_YCOORDINATE() {
         return maxYcoordinate;
     }
 
@@ -38,11 +39,11 @@ public class Screen {
         maxYcoordinate = mAX_YCOORDINATE;
     }
 
-    public int getMIN_XCOORDINATE() {
+    public static int getMIN_XCOORDINATE() {
         return minXcoordinate;
     }
 
-    public int getMIN_YCOORDINATE() {
+    public static int getMIN_YCOORDINATE() {
         return minYcoordinate;
     }
 
@@ -76,13 +77,17 @@ public class Screen {
     /**
      * Function to set Attributes
      */
-    public void setAttributes() {
+    public Point setAttributes() {
+
         Point point = new Point();
-        Scanner sc = new Scanner(System.in);
+
         System.out
                 .println("Set point for Square on screen (X and Y) Coordinates : ");
+
         point.setxCoordinate(sc.nextInt());
         point.setyCoordinate(sc.nextInt());
+
+        return point;
     }
 
     /**
@@ -143,13 +148,7 @@ public class Screen {
         checkForEmptyAndThrowException();
         screenList.removeAll(screenList);
         System.out.println("!! All Shape Removed !!");
-        // Iterator<Shape> shape = screenList.iterator();
-        //
-        // while(shape.hasNext()){
-        // screenList.r
-        //
-        // shape.next();
-        // }
+
     }
 
     public String[] displayinAscending() throws Exception {
@@ -180,5 +179,38 @@ public class Screen {
         }
 
         return shapeNAmes;
+    }
+
+    /**
+     * Function to check that is point enclosed in a Shape or not
+     * 
+     * @param point
+     * @return true or false
+     */
+    public String[] findEnclosedPoint(Point point) {
+
+        Iterator<Shape> shape = screenList.iterator();
+        String EnclosedShapes[] = new String[screenList.size()];
+        int newIndex = 0;
+
+        while (shape.hasNext()) {
+
+            Shape shapeGet = shape.next();
+
+            if (shapeGet.isPointEnclosed(point)) {
+
+                System.out.println("Point is enclosed in : "
+                        + shapeGet.getType());
+                EnclosedShapes[newIndex++] = shapeGet.getType();
+
+            }
+
+        }
+        String newString[] = new String[newIndex];
+        for (int i = 0; i < newString.length; i++) {
+            newString[i] = EnclosedShapes[i];
+        }
+        
+        return newString;
     }
 }
