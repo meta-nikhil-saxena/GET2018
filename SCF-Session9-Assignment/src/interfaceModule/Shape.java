@@ -1,5 +1,7 @@
 package interfaceModule;
 
+import graphics.Point;
+
 import java.util.Date;
 
 //Interface to define shapes functionallity
@@ -11,7 +13,7 @@ public interface Shape {
 
     String getOrigin();
 
-    boolean isPointEnclosed(int x,int y);
+    boolean isPointEnclosed(Point point);
 
     String getType();
 
