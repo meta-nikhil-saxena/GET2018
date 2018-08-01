@@ -26,13 +26,17 @@ public class Main {
         try {
             if (!screen.isValidInput(x)) {
                 System.out.println("!! Sorry negative !!");
-                throw new Exception("Invalis input");
+                throw new Exception("Invalid input");
             }
+
             int y = sc.nextInt();
+
             if (!screen.isValidInput(y)) {
                 System.out.println("!! Sorry negative !!");
-                throw new Exception("Invalis input");
+                throw new Exception("Invalid input");
             }
+            screen.setMAX_XCOORDINATE(x);
+            screen.setMAX_YCOORDINATE(y);
         } catch (Exception e) {
             System.out.println("ERROR");
         }
@@ -60,9 +64,9 @@ public class Main {
 
                 switch (choice) {
                 case 1: { // Square
-                    screen.setAttributes();
+                    Point pointSquare = screen.setAttributes();
                     Shape shapeSquare = FactoryShapes.getShapeType(
-                            ShapeEnum.SQUARE.name(), point, integerList);
+                            ShapeEnum.SQUARE.name(), pointSquare, integerList);
 
                     System.out.println("Area of Square : "
                             + shapeSquare.getArea());
@@ -77,9 +81,10 @@ public class Main {
                 case 2: {
 
                     // Rectangle
-                    screen.setAttributes();
+                    Point pointRectangle = screen.setAttributes();
                     Shape shapeRectangle = FactoryShapes.getShapeType(
-                            ShapeEnum.RECTANGLE.name(), point, integerList);
+                            ShapeEnum.RECTANGLE.name(), pointRectangle,
+                            integerList);
 
                     System.out.println("Area of Rectangle : "
                             + shapeRectangle.getArea());
@@ -93,9 +98,10 @@ public class Main {
                 }
                 case 3: {
                     // Triangle
-                    screen.setAttributes();
+                    Point pointTriangle = screen.setAttributes();
                     Shape shapeTriangle = FactoryShapes.getShapeType(
-                            ShapeEnum.TRIANGLE.name(), point, integerList);
+                            ShapeEnum.TRIANGLE.name(), pointTriangle,
+                            integerList);
 
                     System.out.println("Area of Triangle : "
                             + shapeTriangle.getArea());
@@ -104,15 +110,16 @@ public class Main {
                     System.out.println("Origin of Triangle : "
                             + shapeTriangle.getOrigin());
 
+                    screen.addShapeToScreen(shapeTriangle);
                     break;
                 }
                 case 4: {
 
                     // Circle
-                    screen.setAttributes();
+                    Point circle = screen.setAttributes();
 
                     Shape shapeCircle = FactoryShapes.getShapeType(
-                            ShapeEnum.CIRCLE.name(), point, integerList);
+                            ShapeEnum.CIRCLE.name(), circle, integerList);
 
                     System.out.println("Area of Circle : "
                             + shapeCircle.getArea());
@@ -120,6 +127,7 @@ public class Main {
                             + shapeCircle.getPerimeter());
                     System.out.println("Origin of Circle : "
                             + shapeCircle.getOrigin());
+                    screen.addShapeToScreen(shapeCircle);
 
                     break;
                 }
@@ -146,10 +154,21 @@ public class Main {
                     break;
                 }
                 case 8: {
-                    System.out.println("Enter point to find that it is Enclosed");
+                    System.out
+                            .println("Enter point to find that it is Enclosed");
+
                     int xCoordinate = sc.nextInt();
                     int yCoordinate = sc.nextInt();
-                    
+
+                    point.setxCoordinate(xCoordinate);
+                    point.setyCoordinate(yCoordinate);
+
+                    String enclosedShapes[] = screen.findEnclosedPoint(point);
+
+                    for (int i = 0; i < enclosedShapes.length; i++) {
+                        System.out.println(enclosedShapes[i]);
+                    }
+
                     break;
                 }
                 case 9: {
