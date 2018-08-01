@@ -13,12 +13,7 @@ import interfaceModule.ShapeEnum;
 
 public class FactoryShapes {
 Screen screen = new Screen();
-    
-    public boolean isvalidPoint(Point point){
         
-        return false;
-    }
-    
     /**
      * Function to initialize shapes
      * 
