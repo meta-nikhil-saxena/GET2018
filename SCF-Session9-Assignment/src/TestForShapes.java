@@ -18,6 +18,9 @@ public class TestForShapes {
     boolean enclosed;
     Screen screen = new Screen();
 
+    /**
+    *Function to test for square
+    */
     @Test
     public void testSquare() {
 
@@ -41,6 +44,9 @@ public class TestForShapes {
         assertEquals(true, enclosed);
     }
 
+     /**
+    *Function to test for Rectangle
+    */
     @Test
     public void testRectangle() {
         Screen screen = new Screen();
@@ -64,6 +70,9 @@ public class TestForShapes {
         assertEquals(true, enclosed);
     }
 
+     /**
+    *Function to test for Triangle
+    */
     @Test
     public void testtriangle() {
         Screen screen = new Screen();
@@ -89,6 +98,9 @@ public class TestForShapes {
         assertEquals(true, enclosed);
     }
 
+     /**
+    *Function to test for Circle
+    */
     @Test
     public void testCircle() {
         Screen screen = new Screen();
