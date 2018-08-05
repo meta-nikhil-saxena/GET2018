@@ -9,14 +9,14 @@ public interface Queue {
      * 
      * @param element
      */
-    void addElement(int element);
+    boolean addElement(int element);
 
     /**
      * Function to remove element
      * 
      * @param element
      */
-    void removeElement();
+    boolean removeElement();
 
     boolean isEmpty();
 
