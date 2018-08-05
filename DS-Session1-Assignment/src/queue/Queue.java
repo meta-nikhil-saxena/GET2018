@@ -20,6 +20,4 @@ public interface Queue {
 
     boolean isEmpty();
 
-    boolean isFull();
-
 }
