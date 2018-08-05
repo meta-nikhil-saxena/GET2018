@@ -2,7 +2,7 @@ package queue;
 
 import java.util.Scanner;
 
-public class QueueByLinkedList {
+public class QueueByLinkedList implements Queue {
     
     static Scanner sc = new Scanner(System.in);
     
