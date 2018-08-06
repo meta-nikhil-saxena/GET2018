@@ -1,6 +1,6 @@
 package circularQueue;
 
-public class circularQueue implements Queue {
+public class CircularQueue implements Queue {
 
     public static int queue[];
     public static int front = -1;
