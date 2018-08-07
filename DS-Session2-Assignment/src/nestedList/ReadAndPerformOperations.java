@@ -128,14 +128,23 @@ public class ReadAndPerformOperations implements nestedList.List {
     @SuppressWarnings("unchecked")
     @Override
     public int getValue(String pattern) {
+
         int elementedExtracted = 0;
         pattern.trim();
         int i = 0;
+
+        if (listOfList.size() < pattern.length()) {
+            throw new AssertionError(
+                    "Size of list is smaller than pattern size");
+        }
+
         while (i < pattern.length()) {
 
+            // If there is T remove the head
             if (pattern.charAt(i) == 'T') {
                 listOfList.remove(0);
 
+                // if there is H and at last index there is list throw error
             } else if (pattern.charAt(i) == 'H' && i == pattern.length()) {
 
                 if (listOfList.get(0) instanceof List) {
@@ -145,6 +154,8 @@ public class ReadAndPerformOperations implements nestedList.List {
                 }
 
             } else {
+                // if H and instance of list than iterate inside the list and
+                // extract the element
                 if (listOfList.get(0) instanceof List) {
 
                     Iterator<Object> inner = ((List<Object>) listOfList.get(0))
