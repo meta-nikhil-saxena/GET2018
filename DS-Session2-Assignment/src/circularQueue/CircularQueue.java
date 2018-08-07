@@ -6,7 +6,6 @@ public class CircularQueue implements Queue {
     public static int front = -1;
     public static int rear = -1;
 
-
     /**
      * Function to check if the queue is full
      * 
@@ -14,8 +13,7 @@ public class CircularQueue implements Queue {
      */
     public boolean isFull() {
         boolean flag = false;
-        if ((front == rear + 1)
-                || (front == 0 && rear == queue.length - 1)) {
+        if ((front == rear + 1) || (front == 0 && rear == queue.length - 1)) {
             flag = true;
         }
         return flag;
@@ -46,7 +44,7 @@ public class CircularQueue implements Queue {
 
         } else {
             if (isFull()) {
-                System.out.println("!!Stack Overflow!!");
+                throw new AssertionError("Full");
             }
             if (rear == queue.length - 1) {
                 rear = 0;
@@ -62,7 +60,7 @@ public class CircularQueue implements Queue {
      */
     public void removeElement() {
         if (isEmpty()) {
-            System.out.println("!!Stack Underflow!!");
+            throw new AssertionError("Empty");
         } else if (front == rear) {
             front = rear = -1;
 
