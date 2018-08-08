@@ -17,10 +17,24 @@ public class CommandPrompt {
      * @param parent
      */
     public void createDirectory(String directory, Node parent) {
+        boolean flag = false;
+        List<Node> childrenList = parent.getChildren();
 
-        Node child = new Node(directory, parent);
-        parent.addChild(child);
+        Iterator<Node> iterateChild = childrenList.iterator();
 
+        while (iterateChild.hasNext()) {
+            Node child = iterateChild.next();
+
+            if (child.getName().equals(directory)) {
+                flag = true;
+            }
+        }
+        if (flag) {
+            System.out.println("directory already exit try using another name");
+        } else {
+            Node child = new Node(directory, parent);
+            parent.addChild(child);
+        }
     }
 
     /**
