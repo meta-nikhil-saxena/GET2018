@@ -1,4 +1,4 @@
-package Algorithm1;
+package algorithm;
 
 //Class to create Node of the tree
 public class Node {
