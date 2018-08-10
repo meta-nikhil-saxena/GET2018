@@ -1,4 +1,4 @@
-package Algorithm1;
+package algorithm;
 
 /**
  * Class to generate key and value pair
