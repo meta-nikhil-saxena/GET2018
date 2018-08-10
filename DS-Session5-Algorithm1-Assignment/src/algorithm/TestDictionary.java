@@ -1,4 +1,4 @@
-package Algorithm1;
+package algorithm;
 
 import static org.junit.Assert.*;
 
