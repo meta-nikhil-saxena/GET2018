@@ -1,4 +1,5 @@
 package graph;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,6 +51,9 @@ public class GraphCreate implements Graph {
 		listOfEdges[destination].addFirst(edge);
 	}
 
+	/**
+	 * Helper function to print a graph
+	 */
 	public void printGraph() {
 		for (int i = 0; i < numberOfVertices; i++) {
 			edges = listOfEdges[i];
@@ -63,6 +67,11 @@ public class GraphCreate implements Graph {
 
 	/**
 	 * Function to find if graph is connected or not
+	 * 
+	 * @param vertex
+	 *            from which we have to find reachable
+	 * 
+	 * @return true or false
 	 */
 	@Override
 	public boolean isConnected() {
@@ -102,6 +111,9 @@ public class GraphCreate implements Graph {
 		return true;
 	}
 
+	/**
+	 * Function to find list of reachable vertices from given vertex
+	 */
 	@Override
 	public List<Integer> reachable(int vertex) {
 
@@ -135,6 +147,11 @@ public class GraphCreate implements Graph {
 		return min_index;
 	}
 
+	/**
+	 * Function to find minimum spanning tree
+	 * 
+	 * @return list with minimum spanning tree edges and weight
+	 */
 	@Override
 	public List<EdgeAndVertices> minimumSpanningTree() {
 
@@ -215,6 +232,16 @@ public class GraphCreate implements Graph {
 		return minSpanningtree;
 	}
 
+	/**
+	 * Function to fin shortest path
+	 * 
+	 * @param vert1
+	 *            source from which path is to be find
+	 * @param vert2
+	 *            destination to which path is to be traced
+	 * 
+	 * @return list of edges and their respective distance
+	 */
 	@Override
 	public List<EdgeAndVertices> shortestPath(int vert1, int vert2) {
 		List<EdgeAndVertices> shortestPath;
