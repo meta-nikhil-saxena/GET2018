@@ -2,7 +2,7 @@ create database Storefront;
 
 show databases;
 
-use Storefront;
+USE Storefront;
 
 
 #Question 1
@@ -14,24 +14,23 @@ Create all tables of eCommerce Application: StoreFront covered in Session 1 Assi
 
 #table1
 create table user(
-                  User_ID VARCHAR(15) NOT NULL,    
-                  Email_ID VARCHAR(20) NOT NULL,
-                  Name VARCHAR(50) NOT NULL,
-                  Password VARCHAR(15) NOT NULL,
-                  ContactNum VARCHAR(15) NOT NULL,
-                  DOB DATE NOT NULL,
-                  PRIMARY KEY(User_ID),
-                  UNIQUE(Email_ID)
-                 );
+                  id INT NOT NULL AUTO_INCREMENT,    
+                  email_id VARCHAR(20) NOT NULL,
+                  name VARCHAR(50) NOT NULL,
+                  password VARCHAR(15) NOT NULL,
+                  dob DATE NOT NULL,
+                  PRIMARY KEY(id),
+                  UNIQUE(email_id)
+                  );
 
 desc user;
 
 #table2
 create table addressbook(
-                        User_ID VARCHAR(5) NOT NULL,
-                        Address_ID VARCHAR(5) NOT NULL,                           
-                        PRIMARY KEY(Address_ID),
-                        FOREIGN KEY (User_ID) REFERENCES user(User_ID)
+                        id INT NOT NULL AUTO_INCREMENT,
+                        user_id INT NOT NULL,                                                   
+                        PRIMARY KEY(id),
+                        FOREIGN KEY (user_id) REFERENCES user(id)
                         ON UPDATE CASCADE
                         ON DELETE RESTRICT
                         );
@@ -40,78 +39,82 @@ desc addressBook;
 
 #table3
 create table addressstore(
-                         Address_ID VARCHAR(5) NOT NULL,
-                         Address TEXT NOT NULL,
-                         Pincode INT NOT NULL,
-                         Landmark VARCHAR(45),
-                         FOREIGN KEY(Address_ID) REFERENCES addressbook(Address_ID)
+                         address_id INT NOT NULL,
+                         address TEXT NOT NULL,
+                         pincode INT NOT NULL,
+                         landmark VARCHAR(45),
+                         FOREIGN KEY(address_id) REFERENCES addressbook(id)
                          );
 
 desc addressstore;
 
+
 #table4
 create table category(
-                      Category_ID VARCHAR(5) NOT NULL,
-                      Parent_ID VARCHAR(5) NULL,
-                      Name VARCHAR(45) NOT NULL,
-                      Quantity INT NOT NULL,
-                      Image_logo BLOB,
-                      PRIMARY KEY(Category_ID), 
-                      FOREIGN KEY (Parent_ID) REFERENCES category(Category_ID) ON DELETE CASCADE
+                      id INT NOT NULL AUTO_INCREMENT,
+                      parent_id INT NULL,
+                      name VARCHAR(45) NOT NULL,
+                      quantity INT NOT NULL,
+                      image_logo BLOB,
+                      PRIMARY KEY(id), 
+                      FOREIGN KEY (parent_id) REFERENCES category(id)
                      );
                      
 desc category; 
 
 #table5
 create table product(
-                     Category_ID VARCHAR(5) NOT NULL,
-                     Product_ID VARCHAR(5) NOT NULL,
-                     Image_ID VARCHAR(5) NOT NULL,
-                     Name VARCHAR(45) NOT NULL,
-                     Quantity INT NOT NULL,
-                     Cost INT NOT NULL,
-                     Total_images INT NOT NULL,                     
+                     id INT NOT NULL AUTO_INCREMENT,
+                     name VARCHAR(45) NOT NULL,
+                     quantity INT NOT NULL,
+                     cost INT NOT NULL,
                      status VARCHAR(20) NOT NULL,
-                     DateAddProduct TIMESTAMP NOT NULL,
-                     PRIMARY KEY(Product_ID),
-                     FOREIGN KEY(Category_ID) REFERENCES category(Category_ID),
-                     UNIQUE(Image_ID)
+                     date TIMESTAMP NOT NULL,
+                     PRIMARY KEY(id)                   
                      ); 
-                     
-desc product;  
+desc product;
 
 #table6
+create table productlist(
+                        category_id INT NOT NULL,
+                        product_id INT NULL,
+                        FOREIGN KEY(category_id) REFERENCES category(id),
+                        FOREIGN KEY (product_id) REFERENCES product(id) 
+                        );
+desc productlist;         
+
+#table7
 create table image(
-                   Image_ID VARCHAR(5) NOT NULL,
-                   Name VARCHAR(45) NOT NULL,
-                   Image BLOB,
-                   FOREIGN KEY(Image_ID) REFERENCES product(Image_ID)
+                   product_id INT NOT NULL,
+                   name VARCHAR(45) NOT NULL,
+                   image BLOB,
+                   FOREIGN KEY(product_id) REFERENCES product(id)
                   );
                   
 desc image;   
 
-#table7
+#table8
 create table orderitem(
-                   Order_ID VARCHAR(5) NOT NULL,                   
-                   User_ID VARCHAR(5) NOT NULL,
-                   Order_Date TIMESTAMP NOT NULL,                                   
-                   PRIMARY KEY(Order_ID),
-                   FOREIGN KEY(User_ID) REFERENCES user (User_ID)
+                   id INT NOT NULL AUTO_INCREMENT,                  
+                   user_id INT NOT NULL,
+                   order_date TIMESTAMP NOT NULL,                                   
+                   PRIMARY KEY(id),
+                   FOREIGN KEY(user_id) REFERENCES user (id)
                   );
                   
 desc orderitem;   
 
-#table8
+#table9
 create table orderproduct(
-                   Order_ID VARCHAR(5) NOT NULL,
-                   Product_ID VARCHAR(5) NOT NULL,
-                   ShippingAddress VARCHAR(45) NOT NULL,
-                   Cost INT NOT NULL,
-                   Quantity INT NOT NULL,
-                   Order_Date TIMESTAMP NOT NULL,        
-                   Status VARCHAR(45) NULL DEFAULT 'NOT-Shipped',
-                   FOREIGN KEY(Order_ID) REFERENCES orderitem (Order_ID),
-                   FOREIGN KEY(Product_ID) REFERENCES product (Product_ID)
+                   order_id INT NOT NULL,
+                   product_id INT NOT NULL,
+                   shippingaddress VARCHAR(45) NOT NULL,
+                   cost INT NOT NULL,
+                   quantity INT NOT NULL,
+                   order_Date TIMESTAMP NOT NULL,        
+                   status VARCHAR(45) NULL DEFAULT 'NOT-Shipped',
+                   FOREIGN KEY(order_id) REFERENCES orderitem (id),
+                   FOREIGN KEY(product_id) REFERENCES product (id)
                    );
                 
 desc orderproduct;
@@ -134,6 +137,8 @@ drop table orderitem;
 
 drop table image;
 
+drop table productlist;
+
 drop table product;
 
 drop table category;
@@ -147,59 +152,74 @@ Create the Product table again.
 */
 #table4
 create table category(
-                      Category_ID VARCHAR(5) NOT NULL,
-                      Parent_ID VARCHAR(5) NOT NULL,
-                      Name VARCHAR(45) NOT NULL,
-                      Quantity INT NOT NULL,
-                      Image_logo BLOB,
-                      PRIMARY KEY(Category_ID)
+                      id INT NOT NULL AUTO_INCREMENT,
+                      parent_id INT NULL,
+                      name VARCHAR(45) NOT NULL,
+                      quantity INT NOT NULL,
+                      image_logo BLOB,
+                      PRIMARY KEY(id), 
+                      FOREIGN KEY (parent_id) REFERENCES category(id) ON DELETE CASCADE
                      );
                      
+desc category; 
+
 #table5
 create table product(
-                     Category_ID VARCHAR(5) NOT NULL,
-                     Product_ID VARCHAR(5) NOT NULL,
-                     Image_ID VARCHAR(5) NOT NULL,
-                     Name VARCHAR(45) NOT NULL,
-                     Quantity INT NOT NULL,
-                     Cost INT NOT NULL,
-                     Total_images INT NOT NULL,                     
+                     id INT NOT NULL AUTO_INCREMENT,
+                     name VARCHAR(45) NOT NULL,
+                     quantity INT NOT NULL,
+                     cost INT NOT NULL,
+                     total_images INT NOT NULL,                     
                      status VARCHAR(20) NOT NULL,
-                     DateAddProduct TIMESTAMP NOT NULL,
-                     PRIMARY KEY(Product_ID),
-                     FOREIGN KEY(Category_ID) REFERENCES category(Category_ID),
-                     UNIQUE(Image_ID)
+                     date TIMESTAMP NOT NULL,
+                     PRIMARY KEY(id)                   
                      ); 
-                     
+desc product;
+
 #table6
-create table image(
-                   Image_ID VARCHAR(5) NOT NULL,
-                   Name VARCHAR(45) NOT NULL,
-                   Image BLOB,
-                   FOREIGN KEY(Image_ID) REFERENCES product(Image_ID)
-                  );  
-                  
+create table productlist(
+                        category_id INT NOT NULL,
+                        product_id INT NULL,
+                        FOREIGN KEY(category_id) REFERENCES category(id),
+                        FOREIGN KEY (product_id) REFERENCES product(id) 
+                        );
+desc productlist;         
+
 #table7
-create table orderitem(
-                   Order_ID VARCHAR(5) NOT NULL,                   
-                   User_ID VARCHAR(5) NOT NULL,
-                   Order_Date TIMESTAMP NOT NULL,                                   
-                   PRIMARY KEY(Order_ID),
-                   FOREIGN KEY(User_ID) REFERENCES user (User_ID)
+create table image(
+                   product_id INT NOT NULL,
+                   name VARCHAR(45) NOT NULL,
+                   image BLOB,
+                   FOREIGN KEY(product_id) REFERENCES product(id)
                   );
+                  
+desc image;   
+
 #table8
+create table orderitem(
+                   id INT NOT NULL AUTO_INCREMENT,                  
+                   user_id INT NOT NULL,
+                   order_date TIMESTAMP NOT NULL,                                   
+                   PRIMARY KEY(id),
+                   FOREIGN KEY(user_id) REFERENCES user (id)
+                  );
+                  
+desc orderitem;   
+
+#table9
 create table orderproduct(
-                   Order_ID VARCHAR(5) NOT NULL,
-                   Product_ID VARCHAR(5) NOT NULL,
-                   ShippingAddress VARCHAR(45) NOT NULL,
-                   Cost INT NOT NULL,
-                   Quantity INT NOT NULL,
-                   Order_Date TIMESTAMP NOT NULL, 
-                   Status VARCHAR(45) NULL DEFAULT 'NOT-Shipped',
-                   FOREIGN KEY(Order_ID) REFERENCES orderitem (Order_ID),
-                   FOREIGN KEY(Product_ID) REFERENCES product (Product_ID)
-                   );                  
-                                   
+                   order_id INT NOT NULL,
+                   product_id INT NOT NULL,
+                   shippingaddress VARCHAR(45) NOT NULL,
+                   cost INT NOT NULL,
+                   quantity INT NOT NULL,
+                   order_Date TIMESTAMP NOT NULL,        
+                   status VARCHAR(45) NULL DEFAULT 'NOT-Shipped',
+                   FOREIGN KEY(order_id) REFERENCES orderitem (id),
+                   FOREIGN KEY(product_id) REFERENCES product (id)
+                   );
+                
+desc orderproduct;            
                                    
                                 
 
