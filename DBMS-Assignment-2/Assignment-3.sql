@@ -1,108 +1,106 @@
 use storefront;
 
-insert into orderitem(Order_ID,User_ID)
+INSERT INTO orderitem(User_ID)
                     VALUES
-                    ('O1','U1'),
-                    ('O2','U2'),
-                    ('O3','U3'),
-                    ('O4','U4'),
-                    ('O5','U5'),
-                    ('O6','U6');
+                    (1),
+                    (2),
+                    (3),
+                    (4),
+                    (5),
+                    (6),
+                    (7);
                     
 SELECT * FROM orderitem; 
 
-insert into orderproduct(Order_ID,Product_ID,ShippingAddress,Cost,Quantity,Status)
+INSERT INTO orderproduct(order_id,product_id,shippingaddress,cost,quantity,status)
                     VALUES
-                    ('O1','MB','Jaipur',5000,5,'NOT-SHIPPED'),
-                    ('O2','MC','Jaipur',5000,5,'NOT-SHIPPED'),
-                    ('O3','SH','Jaipur',5000,5,'NOT-SHIPPED'),
-                    ('O4','SM','Jaipur',5000,5,'NOT-SHIPPED'),
-                    ('O5','NO','Jaipur',5000,5,'NOT-SHIPPED'),
-                    ('O6','FST','Jaipur',5000,5,'NOT-SHIPPED');
+                    (1,1,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (2,2,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (3,3,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (4,4,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (5,5,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (6,6,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (7,7,'Udaipur',5000,5,'SHIPPED');
                     
-insert into orderproduct(Order_ID,Product_ID,ShippingAddress,Cost,Quantity,Status)
+INSERT INTO orderproduct(Order_ID,Product_ID,ShippingAddress,Cost,Quantity,Status)
                     VALUES
-                    ('O1','MC','Jaipur',5000,5,'NOT-SHIPPED'),
-                    ('O2','MC','Udaipur',50000,25,'NOT-SHIPPED'),
-                    ('O3','SH','Jaipur',15000,5,'NOT-SHIPPED'),
-                    ('O4','FST','Aligarh',2000,35,'NOT-SHIPPED'),
-                    ('O5','NO','Jodhpur',51000,15,'NOT-SHIPPED'),
-                    ('O6','FST','Agra',90000,1,'NOT-SHIPPED');                    
+                    (1,2,'Jaipur',5000,5,'NOT-SHIPPED'),
+                    (2,2,'Udaipur',50000,25,'NOT-SHIPPED'),
+                    (3,3,'Jaipur',15000,5,'NOT-SHIPPED'),
+                    (4,6,'Aligarh',2000,35,'NOT-SHIPPED'),
+                    (5,7,'Jodhpur',51000,15,'NOT-SHIPPED'),
+                    (6,6,'Agra',90000,1,'NOT-SHIPPED');                    
                     
-insert into orderproduct(Order_ID,Product_ID,ShippingAddress,Cost,Quantity,Status)
-                    VALUES
-                    ('O1','MC','Jaipur',5000,5,'SHIPPED'),
-                    ('O2','MC','Udaipur',50000,25,'NOT-SHIPPED'),
-                    ('O3','SH','Jaipur',15000,5,'SHIPPED'),
-                    ('O4','FST','Aligarh',2000,35,'NOT-SHIPPED'),
-                    ('O5','NO','Jodhpur',51000,15,'NOT-SHIPPED'),
-                    ('O6','FST','Agra',90000,1,'NOT-SHIPPED');  
                     
 SELECT * FROM orderproduct;   
-delete from orderproduct;
 
 # 1 > Display Recent 5 Orders placed (Id, Order Date, Order Total).
 
-SELECT op.Order_ID,op.Order_Date,
-op.Cost*op.Quantity As TotalCost
+SELECT op.order_id,op.order_date,
+op.cost*op.quantity As totalcost
 FROM orderproduct op
 INNER JOIN orderitem p
-ON p.Order_ID = op.Order_ID
-ORDER BY Order_Date
+ON p.id = op.order_id
+ORDER BY order_date DESC
 LIMIT 5;
 
 # 2 > Display 10 most expensive Orders.
 
-SELECT op.Order_ID,op.Order_Date,
-op.Cost*op.Quantity As TotalCost
+SELECT op.order_id,op.order_date,
+op.cost*op.quantity As totalcost
 FROM orderproduct op
 INNER JOIN orderitem p
-ON p.Order_ID = op.Order_ID
-ORDER BY TotalCost
+ON p.id = op.Order_ID
+ORDER BY totalcost DESC
 LIMIT 5;
 
 #3 > Display all the Orders which are placed more than 10 days old and one or more items from those orders are still not shipped.
 
-SELECT op.Order_ID,op.Product_ID 
+SELECT DISTINCT op.order_id,op.product_id 
 FROM orderitem o
 JOIN orderproduct op
-ON op.Order_ID = o.Order_ID
-WHERE Status = 'NOT-SHIPPED';
+ON op.order_id = o.id
+WHERE DATE(o.order_date) <= CURDATE() - 10  
+AND status = 'NOT-SHIPPED';
 
 #4 > Display list of shoppers which haven't ordered anything since last month.
 
-SELECT Name
+SELECT name
 FROM user
-WHERE User_ID NOT IN (SELECT User_ID FROM orderitem WHERE Order_Date<CURDATE()-30);
+WHERE id 
+NOT IN (SELECT user_id FROM orderitem WHERE DATE(order_date) < CURDATE()-30);
 
 #5 > Display list of shopper along with orders placed by them in last 15 days. 
 
-SELECT Name
+SELECT name
 FROM user
-WHERE User_ID IN (SELECT distinct User_ID FROM orderitem WHERE Order_Date > CURDATE()-15);
+WHERE id 
+IN (SELECT user_id FROM orderitem WHERE DATE(order_date) > CURDATE()-15);
 
 #6 > Display list of order items which are in “shipped” state for particular Order Id )
 
-SELECT P.Name
-FROM product P 
-JOIN orderproduct O
-ON P.Product_ID = O.Product_ID
-WHERE O.Product_ID = 'MC' 
-AND O.Status = 'SHIPPED';
+SELECT p.Name
+FROM orderproduct o
+JOIN product p
+ON p.id = o.product_id
+WHERE o.order_id = 7 
+AND o.status = 'SHIPPED';
 
-#7 > Display list of order items along with order placed date which fall between Rs 20 to Rs 50 price.
+#7 > Display list of order items along with order placed date which fall between Rs 200 to Rs 500 price.
 
-SELECT DISTINCT P.Name, O.Order_Date
-FROM product P 
-JOIN orderitem O 
-JOIN orderproduct PO
-ON P.Product_ID = PO.Product_ID
-WHERE P.Cost BETWEEN 200 AND 500;
+SELECT DISTINCT p.name, o.order_date
+FROM product p 
+JOIN orderitem o 
+JOIN orderproduct po
+ON p.id = po.product_id
+WHERE p.cost BETWEEN 200 AND 500;
 
 # 8 > Update first 20 Order items status to “Shipped” which are placed today.
 
 UPDATE orderproduct 
-SET Status = 'SHIPPED'
+SET status = 'SHIPPED'
+WHERE DATE(order_date) = CURDATE()
+ORDER BY order_date
 LIMIT 10;
 
 SELECT * FROM orderproduct;
