@@ -168,8 +168,7 @@ create table product(
                      id INT NOT NULL AUTO_INCREMENT,
                      name VARCHAR(45) NOT NULL,
                      quantity INT NOT NULL,
-                     cost INT NOT NULL,
-                     total_images INT NOT NULL,                     
+                     cost INT NOT NULL,                    
                      status VARCHAR(20) NOT NULL,
                      date TIMESTAMP NOT NULL,
                      PRIMARY KEY(id)                   
