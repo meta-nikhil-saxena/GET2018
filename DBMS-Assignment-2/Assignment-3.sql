@@ -58,7 +58,7 @@ LIMIT 5;
 
 SELECT DISTINCT op.order_id,op.product_id 
 FROM orderitem o
-JOIN orderproduct op
+INNER JOIN orderproduct op
 ON op.order_id = o.id
 WHERE DATE(o.order_date) <= CURDATE() - 10  
 AND status = 'NOT-SHIPPED';
@@ -66,9 +66,13 @@ AND status = 'NOT-SHIPPED';
 #4 > Display list of shoppers which haven't ordered anything since last month.
 
 SELECT name
-FROM user
-WHERE id 
-NOT IN (SELECT user_id FROM orderitem WHERE DATE(order_date) < CURDATE()-30);
+FROM user u
+INNER JOIN orderitem o
+ON u.id = o.user_id
+INNER JOIN orderproduct op
+ON o.id = op.order_id
+WHERE
+DATE(op.order_date) < DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
 
 #5 > Display list of shopper along with orders placed by them in last 15 days. 
 
@@ -81,7 +85,7 @@ IN (SELECT user_id FROM orderitem WHERE DATE(order_date) > CURDATE()-15);
 
 SELECT p.Name
 FROM orderproduct o
-JOIN product p
+INNER JOIN product p
 ON p.id = o.product_id
 WHERE o.order_id = 7 
 AND o.status = 'SHIPPED';
@@ -90,8 +94,8 @@ AND o.status = 'SHIPPED';
 
 SELECT DISTINCT p.name, o.order_date
 FROM product p 
-JOIN orderitem o 
-JOIN orderproduct po
+INNER JOIN orderitem o 
+INNER JOIN orderproduct po
 ON p.id = po.product_id
 WHERE p.cost BETWEEN 200 AND 500;
 
