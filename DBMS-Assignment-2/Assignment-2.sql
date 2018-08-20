@@ -47,7 +47,7 @@ INSERT INTO category(name,quantity,image_logo)
 
 INSERT INTO category(parent_id,name,quantity,image_logo)
                      VALUES                     
-                     (44,'Mobile',10,'D:\New folder\GET2018\GET2018\DBMS-Assignment-2');
+                     (1,'Mobile',10,'D:\New folder\GET2018\GET2018\DBMS-Assignment-2');
 
 INSERT INTO category(name,quantity,image_logo)
                      VALUES
@@ -80,17 +80,17 @@ SELECT * FROM product;
 
 INSERT INTO productlist(category_id,product_id)
                         VALUES
-                        (44,1),
-                        (44,2),
-                        (46,3),
-                        (45,4),
-                        (45,5),
-                        (48,6),
-                        (49,7);
+                        (1,1),
+                        (1,2),
+                        (3,3),
+                        (2,4),
+                        (2,5),
+                        (5,6),
+                        (6,7);
     
 INSERT INTO productlist(category_id,product_id)
                         VALUES
-                        (48,7);
+                        (5,7);
                         
 SELECT * FROM productlist;
 
