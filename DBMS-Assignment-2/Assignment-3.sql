@@ -34,6 +34,20 @@ INSERT INTO orderproduct(Order_ID,Product_ID,ShippingAddress,Cost,Quantity,Statu
                     
 SELECT * FROM orderproduct;   
 
+CREATE VIEW billing
+AS
+SELECT u.id AS user_id,o.id AS order_id, p.id AS product_id, p.name AS product_name, opr.quantity, p.cost, 
+       u.name AS username, u.email_id, opr.order_date, opr.status,SUM(opr.quantity*p.cost) AS order_total
+FROM orderitem AS o
+INNER JOIN orderproduct AS opr ON o.id = opr.order_id
+INNER JOIN product AS p ON opr.product_id = p.id
+INNER JOIN user AS u ON u.id = o.user_id
+GROUP BY o.id;
+
+SELECT * FROM billing;
+
+DROP VIEW billing;
+
 # 1 > Display Recent 5 Orders placed (Id, Order Date, Order Total).
 
 SELECT op.order_id,op.order_date,
@@ -58,7 +72,7 @@ LIMIT 5;
 
 SELECT DISTINCT op.order_id,op.product_id 
 FROM orderitem o
-INNER JOIN orderproduct op
+JOIN orderproduct op
 ON op.order_id = o.id
 WHERE DATE(o.order_date) <= CURDATE() - 10  
 AND status = 'NOT-SHIPPED';
@@ -66,13 +80,9 @@ AND status = 'NOT-SHIPPED';
 #4 > Display list of shoppers which haven't ordered anything since last month.
 
 SELECT name
-FROM user u
-INNER JOIN orderitem o
-ON u.id = o.user_id
-INNER JOIN orderproduct op
-ON o.id = op.order_id
-WHERE
-DATE(op.order_date) < DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
+FROM user
+WHERE id 
+NOT IN (SELECT user_id FROM orderitem WHERE DATE(order_date) < CURDATE()-30);
 
 #5 > Display list of shopper along with orders placed by them in last 15 days. 
 
@@ -85,7 +95,7 @@ IN (SELECT user_id FROM orderitem WHERE DATE(order_date) > CURDATE()-15);
 
 SELECT p.Name
 FROM orderproduct o
-INNER JOIN product p
+JOIN product p
 ON p.id = o.product_id
 WHERE o.order_id = 7 
 AND o.status = 'SHIPPED';
@@ -94,8 +104,8 @@ AND o.status = 'SHIPPED';
 
 SELECT DISTINCT p.name, o.order_date
 FROM product p 
-INNER JOIN orderitem o 
-INNER JOIN orderproduct po
+JOIN orderitem o 
+JOIN orderproduct po
 ON p.id = po.product_id
 WHERE p.cost BETWEEN 200 AND 500;
 
