@@ -1,24 +1,32 @@
 # 1 > Display Shopper’s information along with number of orders he/she placed during last 30 days.
 
-SELECT u.id, u.name, u.email_id, u.dob, COUNT(o.id) AS order_count
+SELECT u.id, u.name, u.email_id, u.dob, COUNT(op.order_id) AS order_count
 FROM user AS u
 INNER JOIN orderitem AS o
 ON u.id = o.user_id
 INNER JOIN orderproduct AS op
 ON o.id = op.order_id
-WHERE op.order_date > DATE_SUB(CURDATE(), INTERVAL 30 DAY) 
+WHERE o.order_date > DATE_SUB(CURDATE(), INTERVAL 30 DAY) 
 GROUP BY o.user_id;
 
 # 2 > Display the top 10 Shoppers who generated maximum number of revenue in last 30 days.
 
-SELECT u.id, u.name, u.email_id, SUM(p.cost * p.quantity) AS order_total
-FROM user AS u
-INNER JOIN orderitem AS o 
-ON u.id = o.user_id
-INNER JOIN orderproduct AS p 
-ON o.id = p.order_id
-WHERE o.order_date > DATE_SUB(CURDATE(), INTERVAL 30 DAY) 
-GROUP BY u.id
+CREATE VIEW billing
+AS
+SELECT u.id AS user_id,o.id AS order_id, p.id AS product_id, p.name AS product_name, opr.quantity, p.cost, 
+       u.name AS username, u.email_id, opr.order_date, opr.status,SUM(opr.quantity*p.cost) AS order_total
+FROM orderitem AS o
+INNER JOIN orderproduct AS opr ON o.id = opr.order_id
+INNER JOIN product AS p ON opr.product_id = p.id
+INNER JOIN user AS u ON u.id = o.user_id
+GROUP BY o.id;
+
+SELECT * FROM billing;
+
+
+SELECT user_id, username, email_id, order_total
+FROM billing
+WHERE order_date > DATE_SUB(CURDATE(), INTERVAL 30 DAY) 
 ORDER BY order_total DESC
 LIMIT 10;
 
@@ -49,11 +57,14 @@ GROUP BY MONTH(o.order_date);
 
 UPDATE product AS p
 SET p.status = 'Inactive'
-WHERE p.id Not IN(
-                        SELECT product_id
-                        FROM orderproduct AS opr                
+
+WHERE p.id NOT IN(
+                        SELECT opr.product_id
+                        FROM orderproduct opr
                         WHERE opr.order_date >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
-                       );
+    
+                       )
+AND p.date >= DATE_SUB(CURDATE(), INTERVAL 90 DAY);
                        
 SELECT * FROM product;              
 
