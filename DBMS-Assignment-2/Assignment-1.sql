@@ -104,7 +104,6 @@ create table orderitem(
                    id INT NOT NULL AUTO_INCREMENT,                  
                    user_id INT NOT NULL,
                    order_date TIMESTAMP NOT NULL, 
-                   order_total INT NULL DEFAULT 0,
                    PRIMARY KEY(id),
                    FOREIGN KEY(user_id) REFERENCES user (id)
                   );
@@ -212,7 +211,6 @@ create table orderitem(
                    id INT NOT NULL AUTO_INCREMENT,                  
                    user_id INT NOT NULL,
                    order_date TIMESTAMP NOT NULL, 
-                   order_total INT NULL DEFAULT 0,
                    PRIMARY KEY(id),
                    FOREIGN KEY(user_id) REFERENCES user (id)
                   );
