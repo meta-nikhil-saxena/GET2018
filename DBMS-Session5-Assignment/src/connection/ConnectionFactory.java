@@ -1,0 +1,24 @@
+package connection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ConnectionFactory {
+
+    public static Connection getConnection() {
+        Connection connection = null;
+        String url = "jdbc:mysql://localhost:3306/storefront";
+        String username = "root";
+        String password = "root";
+        String driver = "com.mysql.jdbc.Driver";
+        try {
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url,username,password);
+        } catch (ClassNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+}
