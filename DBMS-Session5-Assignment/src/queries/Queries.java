@@ -29,10 +29,11 @@ public class Queries {
      * Q-3 Update all those products which were not ordered by any Shopper as Inactive in
      * last 1 year. Return the number of products updated.
      */
-    public static String update = "UPDATE product SET status = 'Inactive' "
-            + "WHERE id NOT IN ( SELECT DISTINCT product_id "
+    public static String update = "UPDATE product p SET p.status = 'Inactive' "
+            + "WHERE p.id NOT IN ( SELECT DISTINCT product_id "
             + "FROM orderproduct "
-            + "WHERE order_date > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) )";
+            + "WHERE order_date > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ) "
+            + "AND p.date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ";
 
     // select query to display category
     /**
