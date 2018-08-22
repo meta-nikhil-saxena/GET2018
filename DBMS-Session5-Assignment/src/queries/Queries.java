@@ -33,7 +33,7 @@ public class Queries {
             + "WHERE p.id NOT IN ( SELECT DISTINCT product_id "
             + "FROM orderproduct "
             + "WHERE order_date > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ) "
-            + "AND p.date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ";
+            + "OR p.date <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ";
 
     // select query to display category
     /**
