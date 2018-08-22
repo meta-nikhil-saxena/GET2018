@@ -39,10 +39,12 @@ desc addressBook;
 
 #table3
 create table addressstore(
+                         id INT NOT NULL AUTO_INCREMENT,
                          address_id INT NOT NULL,
                          address TEXT NOT NULL,
                          pincode INT NOT NULL,
                          landmark VARCHAR(45),
+                         PRIMARY KEY(id),
                          FOREIGN KEY(address_id) REFERENCES addressbook(id)
                          );
 
@@ -76,8 +78,10 @@ desc product;
 
 #table6
 create table productlist(
+                        id INT NOT NULL AUTO_INCREMENT,   
                         category_id INT NOT NULL,
                         product_id INT NULL,
+                        PRIMARY KEY(id),
                         FOREIGN KEY(category_id) REFERENCES category(id),
                         FOREIGN KEY (product_id) REFERENCES product(id) 
                         );
@@ -85,9 +89,11 @@ desc productlist;
 
 #table7
 create table image(
+                   id INT NOT NULL AUTO_INCREMENT,
                    product_id INT NOT NULL,
                    name VARCHAR(45) NOT NULL,
                    image BLOB,
+                   PRIMARY KEY(id),
                    FOREIGN KEY(product_id) REFERENCES product(id)
                   );
                   
@@ -97,7 +103,7 @@ desc image;
 create table orderitem(
                    id INT NOT NULL AUTO_INCREMENT,                  
                    user_id INT NOT NULL,
-                   order_date TIMESTAMP NOT NULL,                                   
+                   order_date TIMESTAMP NOT NULL, 
                    PRIMARY KEY(id),
                    FOREIGN KEY(user_id) REFERENCES user (id)
                   );
@@ -106,6 +112,7 @@ desc orderitem;
 
 #table9
 create table orderproduct(
+                   id INT NOT NULL AUTO_INCREMENT,
                    order_id INT NOT NULL,
                    product_id INT NOT NULL,
                    shippingaddress VARCHAR(45) NOT NULL,
@@ -113,6 +120,7 @@ create table orderproduct(
                    quantity INT NOT NULL,
                    order_Date TIMESTAMP NOT NULL,        
                    status VARCHAR(45) NULL DEFAULT 'NOT-Shipped',
+                   PRIMARY KEY(id),
                    FOREIGN KEY(order_id) REFERENCES orderitem (id),
                    FOREIGN KEY(product_id) REFERENCES product (id)
                    );
@@ -158,7 +166,7 @@ create table category(
                       quantity INT NOT NULL,
                       image_logo BLOB,
                       PRIMARY KEY(id), 
-                      FOREIGN KEY (parent_id) REFERENCES category(id) ON DELETE CASCADE
+                      FOREIGN KEY (parent_id) REFERENCES category(id)
                      );
                      
 desc category; 
@@ -168,7 +176,7 @@ create table product(
                      id INT NOT NULL AUTO_INCREMENT,
                      name VARCHAR(45) NOT NULL,
                      quantity INT NOT NULL,
-                     cost INT NOT NULL,                    
+                     cost INT NOT NULL,
                      status VARCHAR(20) NOT NULL,
                      date TIMESTAMP NOT NULL,
                      PRIMARY KEY(id)                   
@@ -177,8 +185,10 @@ desc product;
 
 #table6
 create table productlist(
+                        id INT NOT NULL AUTO_INCREMENT,   
                         category_id INT NOT NULL,
                         product_id INT NULL,
+                        PRIMARY KEY(id),
                         FOREIGN KEY(category_id) REFERENCES category(id),
                         FOREIGN KEY (product_id) REFERENCES product(id) 
                         );
@@ -186,9 +196,11 @@ desc productlist;
 
 #table7
 create table image(
+                   id INT NOT NULL AUTO_INCREMENT,
                    product_id INT NOT NULL,
                    name VARCHAR(45) NOT NULL,
                    image BLOB,
+                   PRIMARY KEY(id),
                    FOREIGN KEY(product_id) REFERENCES product(id)
                   );
                   
@@ -198,7 +210,7 @@ desc image;
 create table orderitem(
                    id INT NOT NULL AUTO_INCREMENT,                  
                    user_id INT NOT NULL,
-                   order_date TIMESTAMP NOT NULL,                                   
+                   order_date TIMESTAMP NOT NULL, 
                    PRIMARY KEY(id),
                    FOREIGN KEY(user_id) REFERENCES user (id)
                   );
@@ -207,6 +219,7 @@ desc orderitem;
 
 #table9
 create table orderproduct(
+                   id INT NOT NULL AUTO_INCREMENT,
                    order_id INT NOT NULL,
                    product_id INT NOT NULL,
                    shippingaddress VARCHAR(45) NOT NULL,
@@ -214,13 +227,9 @@ create table orderproduct(
                    quantity INT NOT NULL,
                    order_Date TIMESTAMP NOT NULL,        
                    status VARCHAR(45) NULL DEFAULT 'NOT-Shipped',
+                   PRIMARY KEY(id),
                    FOREIGN KEY(order_id) REFERENCES orderitem (id),
                    FOREIGN KEY(product_id) REFERENCES product (id)
                    );
                 
-desc orderproduct;            
-                                   
-                                
-
-
-                                   
+desc orderproduct;                                 
