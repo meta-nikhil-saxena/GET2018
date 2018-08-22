@@ -26,8 +26,8 @@ public class Queries {
 
     // delete query to update products
     /**
-     * Q-3 Delete all those products which were not ordered by any Shopper in
-     * last 1 year. Return the number of products deleted.
+     * Q-3 Update all those products which were not ordered by any Shopper as Inactive in
+     * last 1 year. Return the number of products updated.
      */
     public static String update = "UPDATE product SET status = 'Inactive' "
             + "WHERE id NOT IN ( SELECT DISTINCT product_id "
