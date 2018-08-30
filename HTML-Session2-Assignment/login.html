@@ -1,0 +1,90 @@
+<!doctype HTML>
+<html>
+<head>
+
+<title>Login_Page</title>
+<link rel='stylesheet' href='css/login.css'/>
+<link rel='stylesheet' href='css/home.css' />
+<script src='js/login.js'>
+</script>
+   <script>
+          
+
+   </script>
+</head>
+
+<body>
+<div id='navigator_table'>
+	  <table>
+	  
+	        <tr>
+			    <td><img src='images\html.png' width='10%'/></td>
+				
+				<td align = 'right'>
+				                  <a href='login.html'>Login</a>
+				                  <a href='signup.html'>Signup</a>
+								  <a href='home.html'>Home</a>
+				                  <a href='#'>About</a>
+				                  <a href='#'>Product</a>
+				                  <a href='#'>Gallery</a>
+				                  <a href='contactus.html'>Contact Us</a>
+				</td>
+				
+			</tr>
+			
+			<tr>
+			
+			<td colspan='2'><hr/></td>
+			
+			</tr>
+</div>			
+			
+	 	  
+	  </table>
+
+<div id="form_container">
+	       
+		   <form id="form_login" name="loginform">
+		   <table align="center" cellpadding="10" cellspacing="20">
+		   
+		   <tr>
+		       <th align='left'>Email :</th>			   
+			    <td>
+		       <input type = 'text' id='t_email' name='email' required='required' placeholder='Enter Email' onkeypress='validateEmail()'/>
+		       </td>						       
+		   
+		   </tr>
+		   
+		   <tr>
+		   
+		      <th align='left'>Password :</th>
+			   <td>
+		       <input type = 'password' id='t_password' name='password' placeholder='Enter Password' required='required'/><br/><br/>
+			   <a href='#'>forgot Password?</a>
+		       </td>				    
+		   
+		   </tr>
+		   		   
+		   <tr>
+		   
+		   <td colspan="2">
+		   <input type='submit' value='Submit' onclick='login()' height='150px'>
+		   </td>
+		   
+		   </tr>
+		   
+		   </table>
+		   </form>
+	
+	</div>
+
+
+
+
+
+</body>
+
+
+
+
+</html>
