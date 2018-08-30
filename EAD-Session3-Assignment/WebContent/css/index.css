@@ -1,0 +1,14 @@
+*{
+	margin : auto;
+	padding : 1px;
+	font-family : verdana;
+	font-size : 5;
+}
+
+#navigator_table table{
+	 width : 90%;
+	 cellspacing : 20;
+}
+#navigator_table img{
+	 margin : 10px;
+}
