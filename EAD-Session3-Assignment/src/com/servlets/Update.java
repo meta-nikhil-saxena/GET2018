@@ -11,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.dao.ConnectionFactory;
+import com.dao.Employee;
 import com.dao.Queries;
 
 @SuppressWarnings("serial")
@@ -24,6 +26,8 @@ public class Update extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		Employee employee;
 		Connection connection;
 		PrintWriter out = response.getWriter();
 		int id = Integer.parseInt(request.getParameter("employeeid"));
@@ -42,30 +46,34 @@ public class Update extends HttpServlet {
 
 			while (result.next()) {
 
+				employee = new Employee(result.getString(2),
+						result.getString(3), result.getString(4),
+						result.getInt(5));
+
 				out.print("<form action='UpdateDetails'>");
 
 				out.print("<tr>");
 				out.print("<th>First Name</th>");
 				out.print("<td><input type='text' size='30px' name='firstname' value = '"
-						+ result.getString(2) + "'/></td>");
+						+ employee.getFirstName() + "'/></td>");
 				out.print("</tr>");
 
 				out.print("<tr>");
 				out.print("<th>Last Name</th>");
 				out.print("<td><input type='text' size='30px' name='lastname' value = '"
-						+ result.getString(3) + "'/></td>");
+						+ employee.getLastName() + "'/></td>");
 				out.print("</tr>");
 
 				out.print("<tr>");
 				out.print("<th>Email</th>");
-				out.print("<td><input type='email' size='30px' name='email' value = '"
-						+ result.getString(4) + "'/></td>");
+				out.print("<td><input disabled type='email' size='30px' name='email' value = '"
+						+ employee.getEmail() + "'/></td>");
 				out.print("</tr>");
 
 				out.print("<tr>");
 				out.print("<th>Age</th>");
 				out.print("<td><input type='text' size='30px' name='age' value = '"
-						+ result.getString(5) + "'/></td>");
+						+ employee.getAge() + "'/></td>");
 				out.print("</tr>");
 
 				out.print("<tr>");
