@@ -7,11 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.dao.ConnectionFactory;
+import com.dao.Employee;
 import com.dao.Queries;
 
 @SuppressWarnings("serial")
@@ -24,7 +27,8 @@ public class ShowDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
+		Employee employee;
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
@@ -54,12 +58,16 @@ public class ShowDetails extends HttpServlet {
 			// Getting Rows
 			while (result.next()) {
 
+				employee = new Employee(result.getString(2),
+						result.getString(3), result.getString(4),
+						result.getInt(5));
+
 				out.print("<form action='Update'>");
 
 				out.print("<tr><td>" + result.getInt(1) + "</td><td>"
-						+ result.getString(2) + "</td><td>"
-						+ result.getString(3) + "</td><td>"
-						+ result.getString(4) + "</td><td>" + result.getInt(5)
+						+ employee.getFirstName() + "</td><td>"
+						+ employee.getLastName() + "</td><td>"
+						+ employee.getEmail() + "</td><td>" + employee.getAge()
 						+ "</td>");
 
 				out.print("<td><input type='hidden' id='employeeid' name='employeeid' value='"
