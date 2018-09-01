@@ -1,0 +1,29 @@
+*{
+   margin : auto;
+	padding : 1px;
+	font-family : verdana;
+	font-size : 5;
+}
+#form_container{
+	
+	background-color:#FF6B33;
+	padding:20px;
+	border: 5px groove;
+	width : 25%;
+	margin : auto;
+    margin-top: 130px;
+	text-shadow: 1px 1px black;
+	
+}
+table, th{
+	text-align : left;
+}
+#edit_info{
+	width : 50%;
+	height : 20%;
+	background-color : #113377;
+	color: white;
+    font-size: 16px;
+	padding : 5px;
+	button-radius : 4px;
+}
