@@ -1,0 +1,103 @@
+<!doctype HTML>
+<html>
+<head>
+<title>
+Add Employee
+</title>
+<link rel='stylesheet' href='css/index.css' />
+<link rel='stylesheet' href='css/addemp.css' />
+<script src='js/addemp.js'></script>
+</head>
+
+<body align='center'>
+<div id ="container">
+
+     <div id='navigator_table'>
+	  <table>
+	  
+	        <tr>
+			    <td align='left'><img src='images\emp.png' width='10%'/></td>
+				
+				<td  align='right'>
+				                  <a href='add_employee.html'>Add Employee</a>
+				                  <a href='ShowDetails'>Show Employee</a>
+								  <a href='searchEmp.html'>Search Employee</a>
+				                  
+				</td>
+				
+			</tr>
+			
+			<tr>
+			
+			<td colspan='2'><hr/></td>
+			
+			</tr>
+			
+			
+	 	  
+	  </table>			
+	  </div>	
+	  
+<form name='form_addemp'>
+	  
+	  <table cellspacing='20'>
+	  
+	        <tr>			 				
+				<td>
+				 <label class='label_container'>First Name</label>                                 
+				</td>
+
+                <td class='text_container'>
+				 <input type='text' id='firstname' name='firstname' placeholder='Enter First Name' onkeypress='validateFirstName()'/>                                 
+				</td>
+				
+			</tr>
+			
+			<tr>			 				
+				<td>
+				 <label class='label_container'>Last Name</label>                                 
+				</td>
+
+                <td class='text_container'>
+				 <input type='text' id='lastname' name='lastname' placeholder='Enter Last Name' onkeypress='validateLastName()'/>                                 
+				</td>
+				
+			</tr>
+			
+			<tr>			 				
+				<td>
+				 <label class='label_container'>Email</label>                                 
+				</td>
+
+                <td class='text_container'>
+				 <input type='text' id='email' name='email' placeholder='Enter Email' onkeypress='validateEmail()'/>                                 
+				</td>
+				
+			</tr>
+			
+			<tr>			 				
+				<td>
+				 <label class='label_container'>Age</label>                                 
+				</td>
+
+                <td class='text_container'>
+				 <input type='text' id='age' name='age' placeholder='Enter Age' onblur='validateAge()'/>                                 
+				</td>
+				
+			</tr>
+			
+			<tr>
+			    <td>
+				<input type='button' id='submitbutton' value='Submit' onClick='send()'/>
+				</td>
+			
+			</tr>
+	 	  
+	  </table>
+        	
+  </form>		  
+	  
+</body>
+
+
+</html>
