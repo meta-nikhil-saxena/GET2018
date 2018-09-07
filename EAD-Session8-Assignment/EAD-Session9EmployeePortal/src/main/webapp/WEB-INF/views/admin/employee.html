@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee</title>
+</head>
+
+<body>
+
+	<a th:href="@{addEmployee}">Add Employee</a>
+
+	<div class="container">
+		<div th:if="${not #lists.isEmpty(projects)}">
+			<h2>All projects</h2>
+			<table class="table table-striped">
+				<tr>
+					<th>Profile Image</th>
+					<th>EmployeeId</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Password</th>
+					<th>DOB</th>
+					<th>Gender</th>
+					<th>Primary Contact</th>
+					<th>Secondary Contact</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				<tr th:each="employeelist : ${employee}">
+					<td><img src=th:text= "@{employeelist.profileImage}"/></td>
+					<td th:text="${employeelist.employee_id}">Id</td>
+					<td th:text="${employeelist.firstname}">FirstName</td>
+					<td th:text="${employeelist.lastname}">LastName</td>
+					<td th:text="${employeelist.email}">Email</td>
+					<td th:text="${employeelist.password}">Password</td>
+					<td th:text="${employeelist.dateofbirth}">DOB</td>
+					<td th:text="${employeelist.gender}">Gender</td>
+					<td th:text="${employeelist.dob}">Joining Date</td>
+					<td th:text="${employeelist.primarycontact}">Primary Contact</td>
+					<td th:text="${employeelist.secondarycontact}">Secondary
+						Contact</td>
+
+					<td><a
+						th:href="${'editEmployee?id=' + employeelist.employee_id}"
+						class="btn btn-default">Edit</a></td>
+					<td><a th:href="${'delete?id=' + employeelist.employee_id}"
+						class="btn btn-danger">Delete</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
