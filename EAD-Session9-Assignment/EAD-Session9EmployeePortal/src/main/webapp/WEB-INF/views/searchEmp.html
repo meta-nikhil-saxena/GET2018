@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search</title>
+</head>
+<body>
+	<h1>Search Employee</h1>
+
+	<form th:action="@{search}" method="post">
+
+		<input type="text" name="search" id="search" required="required" /> <br /> <input
+			type="submit" value="Search" />
+	</form>
+</body>
+</html>
