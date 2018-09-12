@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add employee</title>
+</head>
+<body>
+	<form th:object="${employee}" th:action="@{saveemployee}" method="post">
+		<table>
+
+			<tr>
+
+				<td><input type="hidden" th:field="*{id}" /></td>
+
+			</tr>
+
+			<tr>
+				<td>Employee ID</td>
+				<td><h1 th:text="*{employee_id}"></h1></td>
+			</tr>
+
+			<tr>
+				<td>Profile Picture Upload</td>
+				<td><input type="file" id="profile"
+					accept="image/png,image/jpeg" th:field="*{profileImage}" /></td>
+			</tr>
+
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" th:field="*{firstName}"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" th:field="*{lastname}" /></td>
+			</tr>
+
+			<tr>
+				<td>Email:</td>
+				<td><input type="email" th:field="*{email}" required="required" /></td>
+			</tr>
+
+
+			<tr>
+				<td>Password:</td>
+				<td><input type="text" th:field="*{password}"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Date Of Birth:</td>
+				<td><input type="date" th:field="*{dob}" required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Gender:</td>
+				<td><input type="radio" th:field="*{gender}" th:value="male" />Male<br />
+					<input type="radio" th:field="*{gender}" th:value="female" />Female
+				</td>
+
+			</tr>
+
+			<tr>
+				<td>Skills:</td>
+
+				<td><select name="skills" multiple>
+						<option th:each="skill:${skillsList}"
+							th:text="${skill.title}" th:id="${skill.id}"
+							th:value="${{skill.title}}"></option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td>Primary Contact Number</td>
+				<td><input type="text" th:field="*{primarycontact}"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Secondary Contact Number</td>
+				<td><input type="text" th:field="*{secondarycontact}" /></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="submit" /></td>
+			</tr>
+
+		</table>
+	</form>
+</body>
+</html>
