@@ -91,7 +91,17 @@ public class AdminController {
 
 	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
 	public String editEmployee(Model model, @RequestParam("id") int id) {
+
 		model.addAttribute("employee", employeeService.getEmployeeById(id));
+
+		return "admin/editEmployee";
+
+	}
+
+	@RequestMapping(value = "/employeeDashboard", method = RequestMethod.GET)
+	public String employeeShow(Model model, @RequestParam("email") String email) {
+		Employee employee = employeeService.getEmployeeByName(email);
+		model.addAttribute("employee", employee);
 		return "admin/editEmployee";
 	}
 

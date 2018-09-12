@@ -76,13 +76,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public boolean checkByEmailAndPassword(String username, String password) {
-		Employee emplopyee = jdbcTemplate.queryForObject(
-				SQL_CHECK_BY_EMAIL_PASSWORD,
-				new Object[] { username, password }, new EmployeeMapper());
-		if (emplopyee != null) {
-			return true;
+		try {
+			jdbcTemplate.queryForObject(SQL_CHECK_BY_EMAIL_PASSWORD,
+					new Object[] { username, password }, new EmployeeMapper());
+		} catch (Exception e) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

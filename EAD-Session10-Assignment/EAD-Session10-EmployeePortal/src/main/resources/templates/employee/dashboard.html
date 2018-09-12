@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>User Home Page</title>
 </head>
 <body>
-	<a href="../admin/addEmployee">Add Employee</a>
-	<a href="../searchEmp">Search Employee</a>
-	<a href="../">Log Out</a>
+	
+		<a th:href="${'../admin/employeeDashboard?email='+email}">Edit Info</a>
+		<a th:href="@{../searchEmp}">Search Employee</a> <a href="../">Log Out</a>
+
 </body>
 </html>

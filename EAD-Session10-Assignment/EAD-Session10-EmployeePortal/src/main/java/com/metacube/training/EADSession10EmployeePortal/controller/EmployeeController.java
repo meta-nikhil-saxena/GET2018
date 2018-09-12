@@ -32,7 +32,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView employeeHome(Model model,
+	public String employeeHome(Model model,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password) {
 
@@ -40,9 +40,10 @@ public class EmployeeController {
 				password);
 
 		if (status) {
-			return new ModelAndView("employee/dashboard");
+			model.addAttribute("email", email);
+			return "employee/dashboard";
 		}
-		return new ModelAndView("employee/login");
+		return "employee/login";
 	}
 
 	// GET and POST method END
@@ -56,7 +57,7 @@ public class EmployeeController {
 		user.setFirstName(employee.getFirstName());
 		user.setLastname(employee.getLastname());
 		user.setPassword(employee.getPassword());
-System.out.println(employee.getPassword());
+		System.out.println(employee.getPassword());
 		emailService.sendEmail(user);
 
 		return "employee/login";
