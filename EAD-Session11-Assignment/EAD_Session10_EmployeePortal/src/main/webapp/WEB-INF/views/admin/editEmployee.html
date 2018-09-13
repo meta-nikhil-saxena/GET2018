@@ -65,13 +65,12 @@
 				<td>Skills:</td>
 
 				<td><select name="skills" multiple>
-						<option th:each="skill:${skillsList}"
-							th:text="${skill.title}" th:id="${skill.id}"
-							th:value="${{skill.title}}"></option>
+						<option th:each="skill : ${skillsList}"
+							th:utext="${skill.title}" th:value="${skill.id}"/>
 				</select></td>
 			</tr>
 
-			<tr>
+			<tr> 
 				<td>Primary Contact Number</td>
 				<td><input type="text" th:field="*{primarycontact}"
 					required="required" /></td>

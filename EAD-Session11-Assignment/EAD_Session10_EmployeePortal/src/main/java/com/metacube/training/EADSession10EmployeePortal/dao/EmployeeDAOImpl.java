@@ -94,11 +94,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				.createQuery(SQL_CHECK_BY_EMAIL_PASSWORD);
 		query.setParameter("password", password);
 		query.setParameter("email", username);
-		Employee emplopyee = query.getSingleResult();
-		if (emplopyee != null) {
-			return true;
+
+		try {
+
+			query.getSingleResult();
+
+		} catch (Exception e) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -107,11 +111,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		TypedQuery<Employee> query = sessionFactory.getCurrentSession()
 				.createQuery(SQL_CHECK_BY_EMAIL);
 		query.setParameter("email", email);
-		Employee employee = query.getSingleResult();
-		if (employee != null) {
-			return true;
+
+		try {
+			query.getSingleResult();
+		} catch (Exception e) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.metacube.training.EADSession10EmployeePortal.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Employee {
 	private String lastname;
 
 	@Column(name = "skills")
-	private String skills;
+	private int skills;
 
 	@Column(name = "gender")
 	private String gender;
@@ -78,11 +79,11 @@ public class Employee {
 		this.status = status;
 	}
 
-	public String getSkills() {
+	public int getSkills() {
 		return skills;
 	}
 
-	public void setSkills(String skills) {
+	public void setSkills(int skills) {
 		this.skills = skills;
 	}
 

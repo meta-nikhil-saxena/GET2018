@@ -2,6 +2,7 @@ package com.metacube.training.EADSession10EmployeePortal.services;
 
 import java.util.List;
 
+import com.metacube.training.EADSession10EmployeePortal.models.EmployeeSkills;
 import com.metacube.training.EADSession10EmployeePortal.models.Skill;
 
 public interface SkillService {
@@ -14,4 +15,8 @@ public interface SkillService {
 	boolean updateSkill(Skill skill);
 
 	boolean createSkill(Skill skill);
+
+	boolean insertInSkillRelation(EmployeeSkills skill);
+
+	Skill getSkillById(String name);
 }

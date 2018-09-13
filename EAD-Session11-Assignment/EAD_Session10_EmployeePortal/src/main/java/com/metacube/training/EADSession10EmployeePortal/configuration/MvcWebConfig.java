@@ -23,6 +23,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import com.metacube.training.EADSession10EmployeePortal.models.Employee;
+import com.metacube.training.EADSession10EmployeePortal.models.EmployeeSkills;
 import com.metacube.training.EADSession10EmployeePortal.models.Job;
 import com.metacube.training.EADSession10EmployeePortal.models.Project;
 import com.metacube.training.EADSession10EmployeePortal.models.Skill;
@@ -93,7 +94,7 @@ public class MvcWebConfig implements WebMvcConfigurer {
 
 		factoryBean.setHibernateProperties(props);
 		factoryBean.setAnnotatedClasses(Project.class, Job.class, Skill.class,
-				Employee.class);
+				Employee.class, EmployeeSkills.class);
 
 		return factoryBean;
 	}

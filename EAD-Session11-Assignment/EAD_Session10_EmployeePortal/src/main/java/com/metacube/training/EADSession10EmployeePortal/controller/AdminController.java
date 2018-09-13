@@ -1,6 +1,7 @@
 package com.metacube.training.EADSession10EmployeePortal.controller;
 
 import com.metacube.training.EADSession10EmployeePortal.models.Employee;
+import com.metacube.training.EADSession10EmployeePortal.models.EmployeeSkills;
 import com.metacube.training.EADSession10EmployeePortal.models.Job;
 import com.metacube.training.EADSession10EmployeePortal.models.Project;
 import com.metacube.training.EADSession10EmployeePortal.models.Skill;
@@ -56,8 +57,9 @@ public class AdminController {
 
 	// Add Employee Function
 	@RequestMapping(path = "/saveemployee", method = RequestMethod.POST)
-	public String saveproject(@ModelAttribute("employee") Employee employee) {
-
+	public String saveproject(@ModelAttribute("employee") Employee employee,
+			@RequestParam("skills") String[] skills) {
+		System.out.println(skills[0]);
 		if (employee != null && employee.getId() == 0) {
 
 			boolean status = employeeService.checkByEmail(employee.getEmail());
@@ -71,6 +73,17 @@ public class AdminController {
 			employee.setEmployee_id(employeeId);
 
 			employeeService.createEmployee(employee);
+			// loop to insert in skill relation
+			for (int i = 0; i < skills.length; i++) {
+
+				Skill skill = skillService.getSkillById(Integer
+						.parseInt(skills[i]));
+				EmployeeSkills empSkills = new EmployeeSkills();
+				empSkills.setEmployeeId(employee.getId());
+				empSkills.setSkillId(skill.getId());
+				skillService.insertInSkillRelation(empSkills);
+			}
+
 		} else {
 			employeeService.updateEmployee(employee);
 		}
@@ -87,6 +100,7 @@ public class AdminController {
 	public String addEmployee(Model model) {
 		model.addAttribute("employee", new Employee());
 		model.addAttribute("skillsList", skillService.getAllSkill());
+		model.addAttribute("skills", new String[10]);
 		return "admin/editEmployee";
 	}
 

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.metacube.training.EADSession10EmployeePortal.models.EmployeeSkills;
 import com.metacube.training.EADSession10EmployeePortal.models.Skill;
 
 @Repository
@@ -19,6 +20,7 @@ public class SkillDAOImpl implements SkillDAO {
 	private SessionFactory sessionFactory;
 
 	private final String SQL_FIND_SKILL = "from Skill where id = :skillId";
+	private final String SQL_FIND_SKILL_BY_NAME = "from Skill where title = :skillName";
 	private final String SQL_DELETE_SKILL = "delete from Skill where id = :skillId";
 	private final String SQL_UPDATE_SKILL = "update Skill set title=:title WHERE id= :skillId";
 	private final String SQL_GET_ALL = "from Skill";
@@ -65,6 +67,21 @@ public class SkillDAOImpl implements SkillDAO {
 	public boolean createSkill(Skill skill) {
 		sessionFactory.getCurrentSession().save(skill);
 		return true;
+	}
+
+	@Override
+	public boolean insertInSkillRelation(EmployeeSkills skills) {
+		sessionFactory.getCurrentSession().save(skills);
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Skill getSkillByName(String name) {
+		TypedQuery<Skill> query = sessionFactory.getCurrentSession()
+				.createQuery(SQL_FIND_SKILL_BY_NAME);
+		query.setParameter("skillName", name);
+		return query.getSingleResult();
 	}
 
 }
