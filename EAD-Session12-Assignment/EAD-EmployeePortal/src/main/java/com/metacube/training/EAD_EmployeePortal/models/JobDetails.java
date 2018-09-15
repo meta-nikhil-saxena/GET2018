@@ -17,7 +17,7 @@ public class JobDetails {
 	private int id;
 
 	@Column(name = "employee_id")
-	private int employee_id;
+	private int employeeId;
 
 	@Column(name = "job_id")
 	private int jobId;
