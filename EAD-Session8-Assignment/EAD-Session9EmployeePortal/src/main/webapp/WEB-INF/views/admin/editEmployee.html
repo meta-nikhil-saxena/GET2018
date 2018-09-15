@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add employee</title>
+</head>
+<body>
+	<form action="addEmployee" enctype="multipart/form-data" method="post">
+		<table>
+
+			<tr>
+				<td>Profile Picture Upload</td>
+				<td><input type="file" id="profile" name="profile"
+					accept="image/png,image/jpeg" /></td>
+			</tr>
+
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" id="firstName" name="firstName"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" id="lastName" name="lastName"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Email:</td>
+				<td><input type="email" id="email" name="email"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Date Of Birth:</td>
+				<td><input type="Date" id="dateofbirth" name="dateofbirth"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Gender:</td>
+				<td><input type="radio" id="gender" name="gender" value="male" />Male</td>
+				<td><input type="radio" id="gender" name="gender"
+					value="female" />Female</td>
+			</tr>
+			
+			<tr>
+				<td>Skills:</td>
+				
+				<td>
+				
+				<input type="checkbox" id="gender" name="gender" value="male" />
+				<input type="checkbox" id="gender" name="gender" value="female" />
+				
+				</td>
+			</tr>
+
+			<tr>
+				<td>Date Of Joining:</td>
+				<td><input type="Date" id="dateOfJoining" name="dateOfJoining"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Primary Contact Number</td>
+				<td><input type="text" id="primarycontact"
+					name="primarycontact" required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Secondary Contact Number</td>
+				<td><input type="text" id="secondarycontact"
+					name="secondarycontact" required="required" /></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="submit" /></td>
+			</tr>
+
+		</table>
+	</form>
+</body>
+</html>

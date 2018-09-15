@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Project</title>
+</head>
+<body>
+	<form>
+		<table>
+
+			<tr>
+				<td>Project:</td>
+				<td><input type="text" name="projectname" /></td>
+			</tr>
+
+			<tr>
+				<td>Image Logo</td>
+				<td><input type="file" id="logo" name="logo"
+					accept="image/png,image/jpeg" /></td>
+			</tr>
+
+			<tr>
+				<td>Start Date</td>
+				<td><input type="date" name="startdate" /></td>
+			</tr>
+
+			<tr>
+				<td>End Date</td>
+				<td><input type="date" name="enddate" /></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="submit" /></td>
+			</tr>
+
+		</table>
+	</form>
+</body>
+</html>
