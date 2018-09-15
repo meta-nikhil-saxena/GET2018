@@ -50,15 +50,15 @@ public class JobDetails {
 	 * @return the employee_id
 	 */
 	public int getEmployee_id() {
-		return employee_id;
+		return employeeId;
 	}
 
 	/**
 	 * @param employee_id
 	 *            the employee_id to set
 	 */
-	public void setEmployee_id(int employee_id) {
-		this.employee_id = employee_id;
+	public void setEmployee_id(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	/**
