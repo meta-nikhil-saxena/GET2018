@@ -18,6 +18,6 @@ public interface EmployeeRepository<E> extends JpaRepository<Employee, Integer> 
 	Employee findByfirstName(String name);
 
 	@Modifying
-	@Query("select e from JobDetails j,Employee e where e.id=j.employee_id AND j.projectId=:projectId")
+	@Query("select e from JobDetails j,Employee e where e.id=j.employeeId AND j.projectId=:projectId")
 	List<Employee> getByProjectId(@Param("projectId") int projectId);
 }
