@@ -73,3 +73,21 @@
 #cover-buttons-container a{
 	text-decoration: none
 }
+
+#footer-nav-bar{
+	margin-left: 450px;
+	float: left;
+}
+
+#footer-nav-bar ul li{
+    display: inline-block;
+    margin-right: 20px; 
+}
+
+#footer-nav-widgets{
+	float: right;
+}
+
+#footer-nav-widgets ul li{
+	display: inline-block;
+}
