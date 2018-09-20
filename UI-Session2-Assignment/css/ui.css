@@ -1,6 +1,6 @@
 *{
-	padding: 2px;
-	margin: auto;
+	padding: 0px;
+	margin: 0px;
 	font-family: Lucida, sans-serif;
 }
 
@@ -9,22 +9,31 @@ body{
 }
 
 #cover{
-	position: relative;
+    height: 100%;
+	background : url(../images/homebg.png);
+	background-size: cover;
+}
+#header{
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
 }
 
-#header-logo{
-	position: absolute;
-	left: 30px;
-	top: 40px;
-	margin-left: 150px;
-   display: inline-block;  
-	margin-right: 280px; 
+#cover-image-logo{
+   
 }
 
 #header-nav-bar{
-	position: absolute;
-	left: 550px;
-	top:30px; 
+ 
+	
+}
+#header-nav-widgets{
+	
+}
+
+#cover-container-images-info{
+    display: flex;
+    justify-content: space-around;
 }
 
 #header-nav-bar ul li{
@@ -34,11 +43,7 @@ body{
     padding: 10px;      
 }
 
-#header-nav-widgets{
-	position: absolute;
-	left: 1250px;
-	top: 30px;	
-}
+
 
 #header-nav-widgets ul li{
 	display: inline-block;
@@ -48,27 +53,14 @@ body{
 	height: 30px;
 }
 
- #cover-image-container{
- 	position: absolute;
- 	float: right;
- 	left: 1000px;
- 	top: 200px;
- }
-
 #cover-content-container{
-	position: absolute;
 	color: white;
 	font-size: 30px;
-	float: left;
-	left: 180px;
-	top: 240px;
+	margin-top: 100px;	
 }
 
 #cover-buttons-container{
-	position: absolute;
 	color: white;
-	left: 200px;
-	top: 500px;
 }
 
 #button-download{
@@ -174,12 +166,15 @@ body{
 }
 
 #cover-cloudy-container{
+	margin-top: 20px;
 	display: inline-flex;
 }
 #cover-rainy-container{
+	margin-top: 20px;
 	display: inline-flex;
 }
 #cover-sunny-container{
+	margin-top: 20px;
 	display: inline-flex;
 }
 
@@ -206,7 +201,7 @@ body{
 }
 
 #container-heading3{
-	clear: both;
+     clear: both;
 }
 
 #cover-heading3-container{
@@ -216,6 +211,7 @@ body{
 
 #cover-review-container{
 	display: flex;
+	margin-left: 10%;
 }
 
 .cover-review-row-column-container{
@@ -228,7 +224,7 @@ body{
 }
 
 #cover-review-container-box1{
-	margin-right : 0px;
+	margin-left: 12%;
 }
 
 #bottom-information-container{
@@ -239,6 +235,7 @@ body{
 	height: 400px;
 }
 #footer{
+	padding: 10px;
 	background-color: #383A53;
     height:200px;
 }
@@ -288,7 +285,7 @@ body{
 }
 
 #footer-line{
-   margin: 50px 30% 0px;
+   margin: 50px 27% 0px;
    height: 1px;
    width: 40%;
 }
