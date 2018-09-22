@@ -9,7 +9,8 @@ body{
 }
 
 #cover{
-    height: 100%;
+	height: 50em;
+	width: 100%;
 	background : url(../images/homebg.png);
 	background-size: cover;
 }
@@ -20,7 +21,8 @@ body{
 }
 #cover-container-images-info{
     display: flex;
-    justify-content: space-around;
+	justify-content: space-around;
+	height: 100%;
 }
 
 #header-nav-bar ul li{
@@ -43,7 +45,11 @@ body{
 #cover-content-container{
 	color: white;
 	font-size: 30px;
-	margin-top: 100px;	
+	align-self: center;
+}
+
+#cover-image-container{
+	align-self: center;
 }
 
 #cover-buttons-container{
@@ -127,7 +133,10 @@ body{
     color: #989696;
 }
 #cover-information-image-container{
-  display: inline-flex;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
 }
 
 #cover-information-image1-container{
@@ -162,17 +171,17 @@ body{
 #cover-cloudy-container{
 	margin-top: 20px;
 	padding: 5%;
-	display: inline-flex;
+	display: flex;
 }
 #cover-rainy-container{
 	margin-top: 20px;
 	padding: 5%;
-	display: inline-flex;
+	display: flex;
 }
 #cover-sunny-container{
 	margin-top: 20px;
 	padding: 5%;
-	display: inline-flex;
+	display: flex;
 }
 
 .cover-container-information-box-sunny{
@@ -200,8 +209,9 @@ body{
 }
 
 #container-heading3{
-     clear: both;
-      padding: 2%;
+     width: 100%;
+	 height: 100%;
+	 justify-content: center;
 }
 
 #cover-heading3-container{
@@ -229,12 +239,10 @@ body{
 }
 
 #bottom-information-container{
-	clear: both;
-	display: inline-flex;
+	display: flex;
 	background-image: url(../images/downloadbg.png);
 	height: 400px;
 	justify-content: space-around;
-
 }
 
 #bottom-information-container-image img{
@@ -248,12 +256,13 @@ body{
 #footer{
 	padding: 10px;
 	background-color: #383A53;
-    height:200px;
+	display: flex;
+	justify-content: space-around;
+
 }
 #bottom-information-container-information{
-    width: 30%;
-    margin-left: 10%;
-    margin-top: 3%;
+	align-self: center;
+	padding: 100px;
     color: white;
 }
 
@@ -261,39 +270,31 @@ body{
     margin-top: 50px;
 }
 
-#footer-nav-bar{
-	margin-left: 350px;
-	float: left;
-}
-
 #footer-nav-bar ul li{
     display: inline-block;
-    margin-right: 20px; 
+	padding: 10px;
     color: white;
-}
-
-#footer-nav-widgets{
-
-	display: inline-flex;
-	margin-left: 200px;
 }
 
 #footer-nav-widgets ul li{
 	display: inline-block;
 }
 
-#footer-logo{
-    float: left;
-    margin-left: 100px;
-}
-
-#footer-line{
-   margin: 50px 27% 0px;
-   height: 1px;
-   width: 40%;
-}
-
 center{
 	margin-top: 50px;
 	color: white;
 }
+
+#footer-copyright-container{
+	background-color: #383A53;
+	width: 100%;
+}
+#footer-line-image-container img{
+   height: 1px;
+   width: 40%; 	
+}
+#footer-line-image-container{
+	display: flex;
+	justify-content: center;
+}
+ 
