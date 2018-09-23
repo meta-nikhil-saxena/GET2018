@@ -1,0 +1,41 @@
+#main{
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    animation: square-animation 2s infinite;
+}
+
+#square1{
+    background-color: tomato;
+    animation-delay: -0s;
+}
+#square2{
+   background-color: blue;
+   animation-delay: -0.5s;
+}
+#square3{
+    background-color: yellow;
+    animation-delay: -1.0s;
+}
+#square4{
+    background-color: green;
+    animation-delay: -1.5s;
+}
+
+@keyframes square-animation{
+
+        0%   {left: 0px; top: 0px;}
+        25%  {left: 100px; top: 0px;}
+        50%  {left: 100px; top: 100px;}
+        75%  {left: 0px; top: 100px;}
+        100% {left: 0px; top: 0px;}
+    
+}
