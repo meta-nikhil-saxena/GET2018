@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+</head>
+<body>
+	<a href="employee">Employee</a>
+	<a href="../searchEmp">Search Employee</a>
+	<a href="project">Project</a>
+	<a href="job">Job</a>
+	<a href="skills">Skill</a>
+	<form th:action="@{/logout}" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}" /> <input type="submit" value="LogOut"/>
+	</form>
+</body>
+</html>

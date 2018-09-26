@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee</title>
+</head>
+<body>
+
+	<div th:if="${not #lists.isEmpty(searchemp)}">
+		<table class="table table-striped">
+			<tr>
+				<th>EmpId</th>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>Gender</th>
+				<th>Email</th>
+				<th>primarycontact</th>
+				<th>status</th>
+				<th>profileImage</th>
+
+
+			</tr>
+			<tr th:each="search : ${searchemp}">
+				<td th:text="${search.employee_id}">EmpId</td>
+				<td th:text="${search.firstName}">FirstName</td>
+				<td th:text="${search.lastname}">LastName</td>
+				<td th:text="${search.gender}">Gender</td>
+				<td th:text="${search.email}">Email</td>
+				<td th:text="${search.primarycontact}">primarycontact</td>
+				<td th:text="${search.status}">status</td>
+				<td th:text="${search.profileImage}">profileImage</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
