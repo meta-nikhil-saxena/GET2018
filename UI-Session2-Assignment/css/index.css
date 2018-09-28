@@ -1,0 +1,178 @@
+*{
+	padding: 0px;
+    margin: 0px;
+	font-family: Lucida, sans-serif;
+}
+
+/* Default or Common CSS START */
+body{
+    background-image: url(../images/bodybg.png);
+}
+nav{
+    color: white;
+}
+a{
+    text-decoration: none; 
+    color: white;
+    margin: 0px 0px 0px 10px;
+}
+img{
+    width: 100%;
+    height: auto;
+} 
+.col-md-12{
+    width: 100%;
+}
+.col-md-6{
+    width: 50%;
+}
+.col-md-4{
+    width: 33%;
+}
+.col-md-3{
+    width: 25%;
+}
+.inner-div{
+    width: 80%;
+    display: flex;
+    padding: 20px;
+    margin: auto;
+}
+.inner-div-cover{
+    width: 1000px;
+}
+.row{
+    padding: 60px 0 0 0;
+}
+.btn{
+    color: white;
+    font-size:25px;
+    padding: 15px ;
+    border-radius: 5px;
+    border-style: 2px solid
+}
+h1{
+    color: #5780cd;
+}
+p{
+    color: #989696;
+    padding: 15px 0 0 0;
+}
+/* Default or Common CSS END */
+
+/* Header CSS START */
+#header{
+    background-color: #668cff;
+}
+.widgets{
+	color: white;
+}
+#header div{
+    justify-content: space-between;
+}
+/* Header CSS END */
+
+/* cover CSS Start */
+#cover{
+    background-image: url(../images/homebg.png);
+    width: 100%;
+    background-size: cover;
+    padding: 40px 0px 0px 0px;
+}
+#cover div{
+    justify-content: space-around;
+}
+#cover h1{
+  font-size: 50px;
+  color: white;
+}
+.button-download{  
+	background-color: #f47f42;
+}
+.button-features{
+    background-color: #3b5998;
+}
+
+/* Perfect features */
+.cover-heading-div{
+    text-align: center;
+}
+.cover-icon{
+    width: 70px;
+}
+#cover-perfect-features p{
+     padding: 10px 0;
+}
+.inner-col-div{
+    display: flex;
+    padding: 30px;
+}
+
+/* Carousel */
+#cover-carousel div{
+    justify-content: center;
+}
+.carousel-image-left{
+	transform: perspective(4500px) translate(7rem) rotateY(31deg) scale(0.7);
+}
+.carousel-image-right{
+	transform: perspective(4500px) translate(-7rem) rotateY(-31deg) scale(0.7);
+}
+
+/* Screenshots */
+.cover-screenshots-inner-div{
+    justify-content: space-evenly;
+}
+
+/* Reviews */
+.cover-reviews-inner-div{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.cover-reviews-inner-div div{
+    width: 40%;
+    padding: 20px;
+}
+
+/* Cover CSS END */
+
+/* Bottom CSS START */
+#bottom{
+    background-image: url('../images/downloadbg.png');
+    height: 300px;
+}
+.bottom-btn-icon{
+    width: 150px;  
+}
+.bottom-inner-div{
+    padding: 0;
+    justify-content: space-between;
+} 
+.bottom-inner-div :first-child{
+   align-self: center;
+}
+.bottom-image{
+    text-align: center;
+}
+.bottom-image img{
+    height: 250px;
+    width: auto;
+    margin: 50px 0 0 0;
+}
+#bottom h1, #bottom p{
+    color: white;
+}
+/* Footer CSS */
+#footer{
+    background-color: #383A53;
+}
+#footer div{
+    justify-content: space-around;
+}
+.footer-end-div{
+    text-align: center;
+}
+.footer-end-div img{
+    height: 1px;
+    width: 40%; 
+}
