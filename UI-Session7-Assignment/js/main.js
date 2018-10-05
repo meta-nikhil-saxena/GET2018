@@ -12,6 +12,7 @@ var message = "";
       message += "Name : " + key + " , Description : " + errorMap.get(key) + "\n";
       }
    alert(message); 
+   return false;
    }else{
        if(localStorage){
           localStorage.clear();
@@ -20,8 +21,10 @@ var message = "";
                 localStorage.setItem(document.getElementById("contact-us").elements[i].name,document.getElementById("contact-us").elements[i].value);	
        
         }
+     return true;   
     }else{
         console.log("browser dosent support localStorage");
+        return false;
     }
    } 
 }
@@ -65,7 +68,7 @@ function validateEmail(){
     var email = document.getElementById("email");
     if(email.value == ""){
     errorMap.set("email","Email Cannot be Empty");
-    validationResponse(true, email);
+    validationResponse(false, email);
     return false;
     }else if(pattern.test(email.value)){
     errorMap.delete("email");    
