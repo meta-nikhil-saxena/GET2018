@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <h1>Contact Us Today!</h1>
+
+    <div id="main">
+
+        <form name="contact-us">
+
+            <div class="form-field">
+                <div class="label">
+                    First Name
+                </div>
+                <div class="component">
+                    <i class="fas fa-user component-icon"></i>
+                    <input class="input-fields" type="text" id="first-name" name="first-name" pattern="^[A-Z]{1}[a-z]+$"
+                        minlength="3" placeholder="First Name">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Last Name
+                </div>
+                <div class="component">
+                    <i class="fas fa-user component-icon"></i>
+                    <input class="input-fields" type="text" id="last-name" name="last-name" pattern="^[A-Z]{1}[a-z]+$"
+                        minlength="3" placeholder="Last Name">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Email
+                </div>
+                <div class="component">
+                    <i class="far fa-envelope component-icon"></i>
+                    <input class="input-fields" type="email" id="email" name="email" placeholder="E-mail Address">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Phone
+                </div>
+                <div class="component">
+                    <i class="fas fa-phone component-icon"></i>
+                    <input class="input-fields" type="text" id="phone" name="phone" pattern="^[0-9]+$" minlength="10"
+                        maxlength="10" placeholder="(+91)-00-0000-0000">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Address
+                </div>
+                <div class="component">
+                    <i class="fas fa-home component-icon"></i>
+                    <input class="input-fields" type="text" id="address" name="address" pattern="^[A-Z0-9a-z,-]+$"
+                        placeholder="Address">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    City
+                </div>
+                <div class="component">
+                    <i class="fas fa-home component-icon"></i>
+                    <input class="input-fields" type="text" id="city" name="city" pattern="^[A-Z0-9,a-z]+$" placeholder="city">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    State
+                </div>
+                <div class="component">
+                    <i class="fas fa-list-ul component-icon"></i>
+                    <select class="input-fields" name="state">
+                        <option value="null">Please select your state</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Telangana">Telangana</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Zip Code
+                </div>
+                <div class="component">
+                    <i class="fas fa-home component-icon"></i>
+                    <input class="input-fields" type="text" id="zip-code" name="zip-code" maxlength="6" pattern="^[0-9]+$"
+                        placeholder="Zip Code">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Website or domain name
+                </div>
+                <div class="component">
+                    <i class="fas fa-globe-americas component-icon"></i>
+                    <input class="input-fields" type="text" id="website" name="website" pattern="^[A-Ba-z._]+$"
+                        placeholder="Website or domain name">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Do you have hosting ?
+                </div>
+                <div class="component-radio-btn">
+                    <label>
+                        <input type="radio" id="hosting" name="hosting" value="yes">Yes
+                    </label>
+                    <br />
+                    <label>
+                        <input type="radio" id="hosting" name="hosting" value="no">No
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Project Description
+                </div>
+                <div class="component">
+                    <i class="fas fa-pen component-icon"></i>
+                    <textarea class="input-fields" rows="2" pattern="^[A-Za-z,.]+$" placeholder="Project Description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                </div>
+                <div class="component">
+                    <button class="btn-send" type="submit">Send <i class="fab fa-telegram-plane"></i></button>
+                </div>
+            </div>
+
+    </div>
+    </form>
+    </div>
+
+</body>
+
+</html>
