@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <h1>Contact Us Today!</h1>
+
+    <div id="main">
+
+        <form name="contact-us" id="contact-us" method="POST" action="details.html">
+
+            <div class="form-field">
+                <div class="label">
+                    First Name
+                </div>
+                <div class="component">
+                    <i class="fas fa-user component-icon"></i>
+                    <input class="input-fields" type="text" id="first-name" name="first-name" placeholder="First Name" onblur="validateFirstName()">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Last Name
+                </div>
+                <div class="component">
+                    <i class="fas fa-user component-icon"></i>
+                    <input class="input-fields" type="text" id="last-name" name="last-name" placeholder="Last Name" onblur="validateLastName()">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Email
+                </div>
+                <div class="component">
+                    <i class="far fa-envelope component-icon"></i>
+                    <input class="input-fields" type="text" id="email" name="email" placeholder="E-mail Address" onblur="validateEmail()">
+                </div>
+            </div>
+            
+
+            <div class="form-field">
+                <div class="label">
+                    Phone
+                </div>
+                <div class="component">
+                    <i class="fas fa-phone component-icon"></i>
+                    <input class="input-fields" type="text" id="phone" name="phone" placeholder="(+91)-00-0000-0000" onblur="validatePhone()">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    Address
+                </div>
+                <div class="component">
+                    <i class="fas fa-home component-icon"></i>
+                    <input class="input-fields" type="text" id="address" name="address" placeholder="Address" onblur="validateAddress()">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    City
+                </div>
+                <div class="component">
+                    <i class="fas fa-home component-icon"></i>
+                    <input class="input-fields" type="text" id="city" name="city" placeholder="city" onblur="validateCity()">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <div class="label">
+                    State
+                </div>
+                <div class="component">
+                    <i class="fas fa-list-ul component-icon"></i>
+                    <select class="input-fields" id="state" name="state"  onchange="stateChange()">
+                        <option selected>Please select your state</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-field" id="btn-group">
+                <div class="label">
+                </div>
+                <div class="component">
+                    <button class="btn-send" type="submit" onclick="return send()">Send <i class="fab fa-telegram-plane"></i></button>
+                </div>
+            </div>
+
+    </div>
+    </form>
+    </div>
+
+</body>
+
+</html>
